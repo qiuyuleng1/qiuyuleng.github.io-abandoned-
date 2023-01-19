@@ -13,7 +13,7 @@
       <pubDate>Mon, 16 Jan 2023 14:30:45 +0800</pubDate>
       
       <guid>http://example.org/stage2/docker-in-action/</guid>
-      <description>和 Chapter 1: Welcome to Docker Docker make it easier for users to install and run the software. Docker is a tool helping solve common problems such as installing, removing, upgrading, distributing, trusting and running software, helping system administrators focus on higher-value activities.</description>
+      <description>Introduction Chapter 1: Welcome to Docker Docker make it easier for users to install and run the software. Docker is a tool helping solve common problems such as installing, removing, upgrading, distributing, trusting and running software, helping system administrators focus on higher-value activities. What is Docker? Docker is an open source project for building, shipping and running programs. containers Install Docker https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository Take care of the setting of proxy https://docs.docker.com/config/daemon/systemd/#httphttps-proxy https://docs.</description>
     </item>
     
     <item>
