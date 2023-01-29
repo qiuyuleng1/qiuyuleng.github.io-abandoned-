@@ -1,5 +1,12 @@
 ---
-title: "Kubernetes in Action"
+title: "K8s in Action"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
 ---
 
 第一章：Kubernetes 介绍
@@ -472,19 +479,3 @@ pod就绪后发出信号
 将service的spec中的clusterIP设置为None，就会使服务成为headless服务。
 
 k8s不会为headless服务分配集群IP，客户端可以通过这个IP连接到支持它的pod
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

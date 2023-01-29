@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Section 1: 持续集成和Jenkins介绍
+持续集成 在开发过程中尽早地发现bug 持续集成、持续交付、持续部署的区别
+持续集成：个人研发的部分向软件整体的部分交付。频繁进行集成可以更快地发现其中的问题 持续交付：将集成后的代码交付到类生产环境中 持续部署：自动部署到生产环境中 2. Jenkins介绍 Jenkins是持续集成和构建服务器 Java写的，开源的 Section 2: 环境配置和Jenkins安装 java version：1.8.0 （Java 8）
+Jenkins version: 2.121.3，这个版本很多plugin用不了了，所以改用2.346.1
+Section 3: Jenkins架构、术语、UI介绍、创建第一个Jenkins Job Master和Slave架构
+master改成main了
+关键术语 Job/Project: 由Jenkins监视或控制的任务 Slave/Node: node是所有的机器，包括slave和master slave agent：jenkins在slave上运行一个单独的程序 slave注册到master之后，master开始向slave分配负载 Executor: 独立的构建流，一个node可以有&gt;=1个executor Build: 一个build是一个job/project的结果 Plugin: 拓展核心jenkins服务核心功能的软件 Jenkins UI manage plugin报错怎么办
+创建第一个Jenkins Job 运行第一个Jenkins Job 注意manage Jenkins -&gt; manage plugin →advanced 中的HTTP Proxy Configuration
+enter image description here
+Section 4: 用Jenkins持续集成 安装Jenkins GitHub plugin 第一个基于maven的Jenkins项目 Maven 什么是maven 描述软件是如何构建的 描述项目的依赖 安装的时候注意设置PATH Maven中的pom.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Udemy" />
+<meta property="og:description" content="Section 1: 持续集成和Jenkins介绍
+持续集成 在开发过程中尽早地发现bug 持续集成、持续交付、持续部署的区别
+持续集成：个人研发的部分向软件整体的部分交付。频繁进行集成可以更快地发现其中的问题 持续交付：将集成后的代码交付到类生产环境中 持续部署：自动部署到生产环境中 2. Jenkins介绍 Jenkins是持续集成和构建服务器 Java写的，开源的 Section 2: 环境配置和Jenkins安装 java version：1.8.0 （Java 8）
+Jenkins version: 2.121.3，这个版本很多plugin用不了了，所以改用2.346.1
+Section 3: Jenkins架构、术语、UI介绍、创建第一个Jenkins Job Master和Slave架构
+master改成main了
+关键术语 Job/Project: 由Jenkins监视或控制的任务 Slave/Node: node是所有的机器，包括slave和master slave agent：jenkins在slave上运行一个单独的程序 slave注册到master之后，master开始向slave分配负载 Executor: 独立的构建流，一个node可以有&gt;=1个executor Build: 一个build是一个job/project的结果 Plugin: 拓展核心jenkins服务核心功能的软件 Jenkins UI manage plugin报错怎么办
+创建第一个Jenkins Job 运行第一个Jenkins Job 注意manage Jenkins -&gt; manage plugin →advanced 中的HTTP Proxy Configuration
+enter image description here
+Section 4: 用Jenkins持续集成 安装Jenkins GitHub plugin 第一个基于maven的Jenkins项目 Maven 什么是maven 描述软件是如何构建的 描述项目的依赖 安装的时候注意设置PATH Maven中的pom." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/docs/stage2/udemy/" /><meta property="article:section" content="docs" />
+
+
+<title>Udemy | My New Hugo Site</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.c47044c32ceb1d1da7d2e56c3f3148b519dfc25ec64944cd15e05dc672c5574b.js" integrity="sha256-xHBEwyzrHR2n0uVsPzFItRnfwl7GSUTNFeBdxnLFV0s=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>My New Hugo Site</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage1/ansible/" class="">Ansible</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage2/docker-in-action/" class="">Docker in Action</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage1/git/" class="">Git</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage2/k8s-in-action/" class="">K8s in Action</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage1/linux1/" class="">Linux1</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage2/linux2/" class="">Linux2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage1/make_file/" class="">Make File</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage1/tmux/" class="">Tmux</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="/docs/stage2/udemy/" class="active">Udemy</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Udemy</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents"></nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><p>Section 1: 持续集成和Jenkins介绍</p>
+<ol>
+<li>持续集成</li>
+</ol>
+<p>在开发过程中尽早地发现bug
+持续集成、持续交付、持续部署的区别</p>
+<p>持续集成：个人研发的部分向软件整体的部分交付。频繁进行集成可以更快地发现其中的问题
+持续交付：将集成后的代码交付到类生产环境中
+持续部署：自动部署到生产环境中
+2. Jenkins介绍
+Jenkins是持续集成和构建服务器
+Java写的，开源的
+Section 2: 环境配置和Jenkins安装
+java version：1.8.0 （Java 8）</p>
+<p>Jenkins version: 2.121.3，这个版本很多plugin用不了了，所以改用2.346.1</p>
+<p>Section 3: Jenkins架构、术语、UI介绍、创建第一个Jenkins Job
+Master和Slave架构</p>
+<p>master改成main了</p>
+<p>关键术语
+Job/Project: 由Jenkins监视或控制的任务
+Slave/Node: node是所有的机器，包括slave和master
+slave agent：jenkins在slave上运行一个单独的程序
+slave注册到master之后，master开始向slave分配负载
+Executor: 独立的构建流，一个node可以有&gt;=1个executor
+Build: 一个build是一个job/project的结果
+Plugin: 拓展核心jenkins服务核心功能的软件
+Jenkins UI
+manage plugin报错怎么办</p>
+<p>创建第一个Jenkins Job
+运行第一个Jenkins Job
+注意manage Jenkins -&gt; manage plugin →advanced 中的HTTP Proxy Configuration</p>
+<p>enter image description here</p>
+<p>Section 4: 用Jenkins持续集成
+安装Jenkins GitHub plugin
+第一个基于maven的Jenkins项目
+Maven
+什么是maven
+描述软件是如何构建的
+描述项目的依赖
+安装的时候注意设置PATH
+Maven中的pom.xml文件：描述正在构建的软件项目
+Maven构建软件生命周期中的不同阶段
+validate, compile, test, package, verify, install, deploy
+只需要调用要执行的最后一个构建阶段
+注意要给maven设置proxy</p>
+<p>要把里面的username和userpasswd删掉
+在Jenkins中进行源代码控制轮询
+Cron语法</p>
+<p>SCM means source code management</p>
+<p>几个触发器
+build periodically：不集成，只是执行任务
+Section 5: Jenkins 持续检查
+代码质量和代码覆盖率度量报告
+check style: java代码静态分析工具
+已经下架了，现在改用 warning next generation了
+configuration里这样写</p>
+<p>还有一些其他的静态分析工具
+PMD
+FindBugs
+Jenkins支持的其他构建系统
+Ant, Gradle, Shell脚本</p>
+<p>Section 6: Jenkins 持续交付
+归档构建artifacts
+staging环境上安装和配置tomcat
+部署到staging环境上</p>
+<p>线性管道
+Jenkins构建pipeline
+可视化界面</p>
+<p>并行的进行Jenkins构建
+-&gt;
+checkstyle可能花费很长时间
+让staging尽快开始</p>
+<p>部署到生产环境上</p>
+<p>必须手动触发
+如何在一个机器上同时运行两个tomcat程序：运行在不同的端口
+staging: port 8091
+production: port 9091</p>
+<p>Section 7: Jenkins Pipeline as Code (Jenkinsfile)
+把Web应用程序管道转化成代码
+版本控制
+执行job不容易漏掉步骤
+Jenkinsfile：领域专用语言
+代码格式介绍</p>
+<p>创建Pipeline Job
+Jenkinsfile handbook
+parallel 并行运行任务
+Section 8: Jenkins和Docker集成
+先跳过了</p>
+<p>Section 9: 分布式构建</p>
+<p>需要master节点能够SSH免密登录到slave节点
+以我的VM作为master节点，NUC作为slave节点
+Jenkins上新建节点
+给节点加上标签，使得job运行在特定标签的节点（机器）上
+在node configure中</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents"></nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

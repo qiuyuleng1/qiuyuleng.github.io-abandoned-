@@ -1,3 +1,14 @@
+---
+title: "Udemy"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+
 Section 1: 持续集成和Jenkins介绍
 1. 持续集成
 
@@ -117,4 +128,3 @@ Section 9: 分布式构建
 Jenkins上新建节点
 给节点加上标签，使得job运行在特定标签的节点（机器）上
 在node configure中
-

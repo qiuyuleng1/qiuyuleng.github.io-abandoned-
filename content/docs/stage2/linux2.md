@@ -1,3 +1,14 @@
+---
+title: "Linux2"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+
 第二章：基础网络概念
 什么是网络
 制定标准

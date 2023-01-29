@@ -1,6 +1,12 @@
 ---
 title: "Docker in Action"
-date: 2023-01-16T14:30:45+08:00
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
 ---
 
 Introduction
@@ -1278,9 +1284,3 @@ Define network in compose file:
 
 top-level networks property that includes network definitions
 networks property of services
-
-
-
-
-
-

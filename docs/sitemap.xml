@@ -3,38 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://example.org/docs/stage1/ansible/</loc>
-  </url><url>
-    <loc>http://example.org/docs/stage1/git/</loc>
-  </url><url>
-    <loc>http://example.org/docs/stage1/linux1/</loc>
-  </url><url>
-    <loc>http://example.org/docs/stage1/make_file/</loc>
-  </url><url>
-    <loc>http://example.org/docs/stage1/tmux/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
   </url><url>
     <loc>http://example.org/docs/stage2/docker-in-action/</loc>
     <lastmod>2023-01-29T20:34:19+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/docs/</loc>
-    <lastmod>2023-01-29T20:34:19+08:00</lastmod>
+    <loc>http://example.org/docs/stage1/git/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/</loc>
-    <lastmod>2023-01-29T20:34:19+08:00</lastmod>
+    <loc>http://example.org/docs/stage2/k8s-in-action/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
+  </url><url>
+    <loc>http://example.org/docs/stage1/linux1/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
+  </url><url>
+    <loc>http://example.org/docs/stage2/linux2/</loc>
+  </url><url>
+    <loc>http://example.org/docs/stage1/make_file/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
+  </url><url>
+    <loc>http://example.org/docs/stage1/tmux/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
+  </url><url>
+    <loc>http://example.org/docs/stage2/udemy/</loc>
   </url><url>
     <loc>http://example.org/posts/first-post/</loc>
     <lastmod>2023-01-16T14:22:59+08:00</lastmod>
   </url><url>
+    <loc>http://example.org/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
+  </url><url>
     <loc>http://example.org/posts/</loc>
     <lastmod>2023-01-16T14:22:59+08:00</lastmod>
   </url><url>
-    <loc>http://example.org/docs/stage2/linux22/</loc>
-  </url><url>
-    <loc>http://example.org/docs/stage2/udemy2/</loc>
-  </url><url>
     <loc>http://example.org/categories/</loc>
   </url><url>
-    <loc>http://example.org/docs/stage2/k8s-in-action/</loc>
-    <lastmod>2023-01-29T20:34:19+08:00</lastmod>
+    <loc>http://example.org/docs/</loc>
+    <lastmod>2023-01-29T20:53:00+08:00</lastmod>
   </url><url>
     <loc>http://example.org/tags/</loc>
   </url>
