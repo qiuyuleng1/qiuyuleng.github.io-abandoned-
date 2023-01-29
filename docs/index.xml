@@ -5,8 +5,7 @@
     <link>http://example.org/</link>
     <description>Recent content on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Mon, 16 Jan 2023 14:19:33 +0800</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ansible</title>
       <link>http://example.org/docs/stage1/ansible/</link>
@@ -163,15 +162,6 @@ master改成main了
 创建第一个Jenkins Job 运行第一个Jenkins Job 注意manage Jenkins -&amp;gt; manage plugin →advanced 中的HTTP Proxy Configuration
 enter image description here
 Section 4: 用Jenkins持续集成 安装Jenkins GitHub plugin 第一个基于maven的Jenkins项目 Maven 什么是maven 描述软件是如何构建的 描述项目的依赖 安装的时候注意设置PATH Maven中的pom.</description>
-    </item>
-    
-    <item>
-      <title>First Post</title>
-      <link>http://example.org/posts/first-post/</link>
-      <pubDate>Mon, 16 Jan 2023 14:19:33 +0800</pubDate>
-      
-      <guid>http://example.org/posts/first-post/</guid>
-      <description> HEllo world # </description>
     </item>
     
   </channel>
