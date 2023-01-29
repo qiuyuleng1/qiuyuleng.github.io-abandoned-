@@ -1,3 +1,14 @@
+---
+title: "Linux1"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+
 第零章 计算机基础
 操作系统是连接硬件和用户的，让用户不用对着机器文档编程，更方便
 操作系统用来有效率地控制计算机的硬件资源，并且提供方便程序员编程的接口
@@ -680,8 +691,3 @@ patch的功能是更新原始码文件，还是要将软件进行编译后，才
 RPM有软件属性相依的问题，所以出现了YUM机制
 
 现在主要利用rpm来做查询
-
-
-
-
-

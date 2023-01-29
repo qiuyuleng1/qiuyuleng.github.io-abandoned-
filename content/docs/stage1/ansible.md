@@ -1,3 +1,14 @@
+---
+title: "Ansible"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+
 Inventory file
 alias(别名)
 
@@ -35,10 +46,3 @@ YMAL
 Key :(colon) value
 
 冒号后面一定要加空格！
-
-
-
-
-
-
-

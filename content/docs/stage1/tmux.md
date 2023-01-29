@@ -1,3 +1,14 @@
+---
+title: "Tmux"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+
 将会话（还有内部的进程）与窗口解绑的工具
 
 几个名词：
@@ -35,4 +46,3 @@ ctrl+b $ 重命名当前会话
 切换窗口 tmux select -window -t <name/number>
 重命名窗口 tmux rename-window <new name>
 快捷键
-

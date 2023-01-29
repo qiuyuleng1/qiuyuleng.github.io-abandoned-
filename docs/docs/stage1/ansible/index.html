@@ -3,19 +3,48 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Inventory file alias(别名)
+ansible_host=IP/FQDN(fully qualified domain name, 完整域名)
+ansible_connection=ssh/winrm/localhost
+ansible_port=22(default for ssh)
+ansible_user=root/administrator
+ansible_ssh_pass(ansible_password for win)=password
+[group_name1]
+Groupmember_alias1 or host
+[group_name2]
+Groupmember_alias2 or host
+[group_name3:children] 继承
+group_name1
+group_name2
+YMAL Key :(colon) value
+冒号后面一定要加空格！">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/posts/" />
-<title>Posts | My New Hugo Site</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Ansible" />
+<meta property="og:description" content="Inventory file alias(别名)
+ansible_host=IP/FQDN(fully qualified domain name, 完整域名)
+ansible_connection=ssh/winrm/localhost
+ansible_port=22(default for ssh)
+ansible_user=root/administrator
+ansible_ssh_pass(ansible_password for win)=password
+[group_name1]
+Groupmember_alias1 or host
+[group_name2]
+Groupmember_alias2 or host
+[group_name3:children] 继承
+group_name1
+group_name2
+YMAL Key :(colon) value
+冒号后面一定要加空格！" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/docs/stage1/ansible/" /><meta property="article:section" content="docs" />
+
+
+<title>Ansible | My New Hugo Site</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.6ff72e5d6d8eb4afbf8886e3aa940a501057bd751c6b3fd7c720bec72c25c417.js" integrity="sha256-b/cuXW2OtK&#43;/iIbjqpQKUBBXvXUcaz/XxyC&#43;xywlxBc=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="http://example.org/posts/index.xml" title="My New Hugo Site" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -67,7 +96,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/stage1/ansible/" class="">Ansible</a>
+    <a href="/docs/stage1/ansible/" class="active">Ansible</a>
   
 
         </li>
@@ -213,7 +242,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Posts</strong>
+  <strong>Ansible</strong>
 
   <label for="toc-control">
     
@@ -226,29 +255,9 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
-  <ul>
   
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
+
 
 
   </aside>
@@ -258,29 +267,24 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/posts/first-post/">First Post</a>
-    </h2>
-    
-  <h5>January 16, 2023</h5>
-
-
-
-  
-
-  
-
-
-
-
-    <p> HEllo world # 
-    </p>
-  </article>
-  
-
-  
+  <article class="markdown"><p>Inventory file
+alias(别名)</p>
+<p>ansible_host=IP/FQDN(fully qualified domain name, 完整域名)</p>
+<p>ansible_connection=ssh/winrm/localhost</p>
+<p>ansible_port=22(default for ssh)</p>
+<p>ansible_user=root/administrator</p>
+<p>ansible_ssh_pass(ansible_password for win)=password</p>
+<p>[group_name1]</p>
+<p>Groupmember_alias1 or host</p>
+<p>[group_name2]</p>
+<p>Groupmember_alias2 or host</p>
+<p>[group_name3:children] 继承</p>
+<p>group_name1</p>
+<p>group_name2</p>
+<p>YMAL
+Key :(colon) value</p>
+<p>冒号后面一定要加空格！</p>
+</article>
  
       
 
@@ -305,6 +309,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -314,29 +322,9 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
-  <ul>
   
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
+
 
  
       </div>

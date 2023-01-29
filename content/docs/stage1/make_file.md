@@ -1,3 +1,14 @@
+---
+title: "Make File"
+weight: 1
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+---
+
 概述
 makefile关系到了整个系统的编译规则，哪些文件需要先编译，哪些后编译等等
 自动化编译

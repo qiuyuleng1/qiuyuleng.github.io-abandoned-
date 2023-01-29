@@ -3,19 +3,50 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="git reset
+git reverse
+git rebase
+git rebase main
+当前在bugFix这个branch，把当前的branch copy到main branch
+git rebase a b
+将b复制到a下
+git rebase bugFix
+git rebase bugFix main
+git pull &ndash;rebase
+git push origin main (git push )
+git push origin &lt;source本地&gt;:&lt;destination远&gt;
+如果是空的，例如 git push origin :foo ，那就是删除foo on remote
+git fetch 和 git pull的区别？git pull = git fetch &#43; merge
+git fetch origin &lt;source远&gt;:&lt;destination本地&gt;
+如果是空的，例如git fetch origin :bar, 那就是新建bar 分支">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Posts" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/posts/" />
-<title>Posts | My New Hugo Site</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Git" />
+<meta property="og:description" content="git reset
+git reverse
+git rebase
+git rebase main
+当前在bugFix这个branch，把当前的branch copy到main branch
+git rebase a b
+将b复制到a下
+git rebase bugFix
+git rebase bugFix main
+git pull &ndash;rebase
+git push origin main (git push )
+git push origin &lt;source本地&gt;:&lt;destination远&gt;
+如果是空的，例如 git push origin :foo ，那就是删除foo on remote
+git fetch 和 git pull的区别？git pull = git fetch &#43; merge
+git fetch origin &lt;source远&gt;:&lt;destination本地&gt;
+如果是空的，例如git fetch origin :bar, 那就是新建bar 分支" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/docs/stage1/git/" /><meta property="article:section" content="docs" />
+
+
+<title>Git | My New Hugo Site</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.6ff72e5d6d8eb4afbf8886e3aa940a501057bd751c6b3fd7c720bec72c25c417.js" integrity="sha256-b/cuXW2OtK&#43;/iIbjqpQKUBBXvXUcaz/XxyC&#43;xywlxBc=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="http://example.org/posts/index.xml" title="My New Hugo Site" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -80,7 +111,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/stage1/git/" class="">Git</a>
+    <a href="/docs/stage1/git/" class="active">Git</a>
   
 
         </li>
@@ -213,7 +244,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Posts</strong>
+  <strong>Git</strong>
 
   <label for="toc-control">
     
@@ -226,29 +257,9 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
-  <ul>
   
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
+
 
 
   </aside>
@@ -258,29 +269,23 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
-  <article class="markdown book-post">
-    <h2>
-      <a href="/posts/first-post/">First Post</a>
-    </h2>
-    
-  <h5>January 16, 2023</h5>
-
-
-
-  
-
-  
-
-
-
-
-    <p> HEllo world # 
-    </p>
-  </article>
-  
-
-  
+  <article class="markdown"><p>git reset</p>
+<p>git reverse</p>
+<p>git rebase</p>
+<p>git rebase main</p>
+<p>当前在bugFix这个branch，把当前的branch copy到main branch</p>
+<p>git rebase a b</p>
+<p>将b复制到a下</p>
+<p>git rebase bugFix</p>
+<p>git rebase bugFix main</p>
+<p>git pull &ndash;rebase</p>
+<p>git push origin main (git push <!-- raw HTML omitted --> <!-- raw HTML omitted -->)</p>
+<p>git push origin &lt;source本地&gt;:&lt;destination远&gt;</p>
+<p>如果<!-- raw HTML omitted -->是空的，例如 git push origin :foo ，那就是删除foo on remote</p>
+<p>git fetch 和 git pull的区别？git pull = git fetch + merge</p>
+<p>git fetch origin &lt;source远&gt;:&lt;destination本地&gt;</p>
+<p>如果<!-- raw HTML omitted -->是空的，例如git fetch origin :bar, 那就是新建bar 分支</p>
+</article>
  
       
 
@@ -305,6 +310,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -314,29 +323,9 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
-  <ul>
   
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
-  </ul>
-</nav>
+<nav id="TableOfContents"></nav>
+
 
  
       </div>
