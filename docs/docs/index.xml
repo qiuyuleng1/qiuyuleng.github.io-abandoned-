@@ -68,14 +68,12 @@ git fetch origin &amp;lt;source远&amp;gt;:&amp;lt;destination本地&amp;gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/docs/stage2/go/</guid>
-      <description>Set up GO Environment Install a secondary Go environment
+      <description>Set up GO Environment # Install a secondary Go environment
 go get golang.org/dl/go.1.15.6 go1.15.6 download go1.15.6 build Remove the secondary Go environment
-go1.15.6 env GOROOT rm -rf $(go1.15.6 env GOROOT) rm $(go env GOPATH)/bin/go1.15.6 Primitive Types and Declarations Build-in Types booolenas, integers, floats, strings
-Zero value default zero value to any variable that is declared but not assigned a values.
-Literals 0b binary
-0o octal (eight)
-0x hexadecimal (sixteen)
-For longer integer literals, use underscores to improve readability 1_234</description>
+go1.15.6 env GOROOT rm -rf $(go1.15.6 env GOROOT) rm $(go env GOPATH)/bin/go1.15.6 Primitive Types and Declarations # Build-in Types # booolenas, integers, floats, strings
+Zero value # default zero value to any variable that is declared but not assigned a values.
+Literals # 0b binary
+0o octal (eight)</description>
     </item>
     
     <item>
