@@ -11,6 +11,8 @@
     <loc>http://example.org/docs/stage1/git/</loc>
     <lastmod>2023-01-29T20:53:00+08:00</lastmod>
   </url><url>
+    <loc>http://example.org/docs/stage2/go/</loc>
+  </url><url>
     <loc>http://example.org/docs/stage2/k8s-in-action/</loc>
     <lastmod>2023-01-29T20:59:13+08:00</lastmod>
   </url><url>

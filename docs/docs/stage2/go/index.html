@@ -3,19 +3,30 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Set up GO Environment # Install a secondary Go environment
+go get golang.org/dl/go.1.15.6 go1.15.6 download go1.15.6 build Remove the secondary Go environment
+go1.15.6 env GOROOT rm -rf $(go1.15.6 env GOROOT) rm $(go env GOPATH)/bin/go1.15.6 Primitive Types and Declarations # Build-in Types # booolenas, integers, floats, strings
+Zero value # default zero value to any variable that is declared but not assigned a values.
+Literals # 0b binary
+0o octal (eight)">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://example.org/categories/" />
-<title>Categories | My CS Learning</title>
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Go" />
+<meta property="og:description" content="Set up GO Environment # Install a secondary Go environment
+go get golang.org/dl/go.1.15.6 go1.15.6 download go1.15.6 build Remove the secondary Go environment
+go1.15.6 env GOROOT rm -rf $(go1.15.6 env GOROOT) rm $(go env GOPATH)/bin/go1.15.6 Primitive Types and Declarations # Build-in Types # booolenas, integers, floats, strings
+Zero value # default zero value to any variable that is declared but not assigned a values.
+Literals # 0b binary
+0o octal (eight)" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
+
+
+<title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
   <script defer src="/en.search.min.5d691c8c2c2dfeeaa49f6c94430df981e0dc4dd3d200aa56f3d21192d5ae4160.js" integrity="sha256-XWkcjCwt/uqkn2yUQw35geDcTdPSAKpW89IRktWuQWA=" crossorigin="anonymous"></script>
-<link rel="alternate" type="application/rss+xml" href="http://example.org/categories/index.xml" title="My CS Learning" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -106,7 +117,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="/docs/stage2/go/" class="">Go</a>
+    <a href="/docs/stage2/go/" class="active">Go</a>
   
 
         </li>
@@ -226,7 +237,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Categories</strong>
+  <strong>Go</strong>
 
   <label for="toc-control">
     
@@ -239,29 +250,22 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#build-in-types">Build-in Types</a>
       <ul>
-      
+        <li><a href="#zero-value">Zero value</a></li>
+        <li><a href="#literals">Literals</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
+  </ul>
+
+  <ul>
+    <li><a href="#arrays-too-rigid-to-use-directly">Arrays: Too rigid to use directly</a></li>
   </ul>
 </nav>
+
 
 
   </aside>
@@ -271,9 +275,63 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
+  <article class="markdown"><h1 id="set-up-go-environment">
+  Set up GO Environment
+  <a class="anchor" href="#set-up-go-environment">#</a>
+</h1>
+<p>Install a secondary Go environment</p>
+<pre tabindex="0"><code>go get golang.org/dl/go.1.15.6
+go1.15.6 download
+go1.15.6 build
+</code></pre><p>Remove the secondary Go environment</p>
+<pre tabindex="0"><code>go1.15.6 env GOROOT
+rm -rf $(go1.15.6 env GOROOT)
+rm $(go env GOPATH)/bin/go1.15.6
+</code></pre><h1 id="primitive-types-and-declarations">
+  Primitive Types and Declarations
+  <a class="anchor" href="#primitive-types-and-declarations">#</a>
+</h1>
+<h2 id="build-in-types">
+  Build-in Types
+  <a class="anchor" href="#build-in-types">#</a>
+</h2>
+<p>booolenas, integers, floats, strings</p>
+<h3 id="zero-value">
+  Zero value
+  <a class="anchor" href="#zero-value">#</a>
+</h3>
+<p>default zero value to any variable that is declared but not assigned a values.</p>
+<h3 id="literals">
+  Literals
+  <a class="anchor" href="#literals">#</a>
+</h3>
+<p>0b binary</p>
+<p>0o octal (eight)</p>
+<p>0x hexadecimal (sixteen)</p>
+<p>For longer integer literals, use underscores to improve readability <code>1_234</code></p>
+<p><code>var Versus :=</code></p>
+<p><code>const x int64 = 10</code></p>
+<p><code>const y = &quot;hello&quot;</code></p>
+<p>Every declared local variable must be used.</p>
+<h1 id="composite-types">
+  Composite Types
+  <a class="anchor" href="#composite-types">#</a>
+</h1>
+<h2 id="arrays-too-rigid-to-use-directly">
+  Arrays: Too rigid to use directly
+  <a class="anchor" href="#arrays-too-rigid-to-use-directly">#</a>
+</h2>
+<pre tabindex="0"><code>var x1 [3]int // x[0], x[1] and x[2] are initialized to zero.
+var x2 = [3]int{10, 20, 30}
+var x3 = [12]init{1, 5:4, 6, 10: 100, 15} // [1,0,0,0,0,4,6,0,0,0,100,15]
+var x4 = [...]int{10, 20, 30}
+fmt.Println(x == y) // Ture
+fmt.Println(len(x))
 
-  
+var x [2][3]int // multidimensional arrays
+</code></pre><p>Cannot use a negative index. e.g., <code>x[-1] = 10</code></p>
+<p>Cannot change the size of an array.</p>
+</article>
  
       
 
@@ -298,6 +356,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -307,29 +369,22 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#build-in-types">Build-in Types</a>
       <ul>
-      
+        <li><a href="#zero-value">Zero value</a></li>
+        <li><a href="#literals">Literals</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
+  </ul>
+
+  <ul>
+    <li><a href="#arrays-too-rigid-to-use-directly">Arrays: Too rigid to use directly</a></li>
   </ul>
 </nav>
+
 
  
       </div>
