@@ -18,13 +18,13 @@ Update tools to a newer version: go install location_of_source_code_repo@newer_v
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-01-31T21:57:30+08:00" />
+<meta property="article:modified_time" content="2023-02-01T15:20:25+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.2bede35d243063f693cf365cb48edcc06990369a743f1ee5a6f3ffe36dd0eb53.js" integrity="sha256-K&#43;3jXSQwY/aTzzZctI7cwGmQNpp0Px7lpvP/423Q61M=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ff02ff9ef615b475fd9704bb34492ea388a959e8165bd2aa7ad7bbfa2eabedd9.js" integrity="sha256-/wL/nvYVtHX9lwS7NEkuo4ipWegWW9Kqete7&#43;i6r7dk=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -318,7 +318,7 @@ Install the binary in <code>$GOPATH/bin</code> directory.</p>
   <a class="anchor" href="#formatting-your-code">#</a>
 </h3>
 <p><code>go fmt</code> automatically reformats your code to match the standard format, including indentation, white space, spacing around operators.</p>
-<p><code>goimports</code> enhanced version of <code>go fmt</code></p>
+<p><code>goimports</code> is an enhanced version of <code>go fmt</code></p>
 <p>Semicolon insertion rule to faster compile and enforce coding style.</p>
 <h2 id="linting-and-vetting">
   Linting and Vetting
@@ -340,7 +340,7 @@ golint ./...
 <pre tabindex="0"><code>.DEFAULT_GOAL := build
 
 fmt:
-    go fmt ./..
+    go fmt ./...
 .PHONY:fmt
 
 lint: fmt

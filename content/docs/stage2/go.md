@@ -34,7 +34,7 @@ Update tools to a newer version: `go install location_of_source_code_repo@newer_
 ### Formatting your code
 `go fmt` automatically reformats your code to match the standard format, including indentation, white space, spacing around operators.
 
-`goimports` enhanced version of `go fmt`
+`goimports` is an enhanced version of `go fmt`
 
 Semicolon insertion rule to faster compile and enforce coding style.
 
@@ -58,7 +58,7 @@ golint ./...
 .DEFAULT_GOAL := build
 
 fmt:
-    go fmt ./..
+    go fmt ./...
 .PHONY:fmt
 
 lint: fmt
