@@ -3,20 +3,18 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Set up GO Environment # Install a secondary Go environment
-go get golang.org/dl/go.1.15.6 go1.15.6 download go1.15.6 build Remove the secondary Go environment
-go1.15.6 env GOROOT rm -rf $(go1.15.6 env GOROOT) rm $(go env GOPATH)/bin/go1.15.6 Primitive Types and Declarations # Build-in Types # booolenas, integers, floats, strings
-Zero value # default zero value to any variable that is declared but not assigned a values.
-Literals # 0b binary
-0o octal (eight)">
+<meta name="description" content="Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
+go build
+go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.
+Update tools to a newer version: go install location_of_source_code_repo@newer_version">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Go" />
-<meta property="og:description" content="Set up GO Environment # Install a secondary Go environment
-go get golang.org/dl/go.1.15.6 go1.15.6 download go1.15.6 build Remove the secondary Go environment
-go1.15.6 env GOROOT rm -rf $(go1.15.6 env GOROOT) rm $(go env GOPATH)/bin/go1.15.6 Primitive Types and Declarations # Build-in Types # booolenas, integers, floats, strings
-Zero value # default zero value to any variable that is declared but not assigned a values.
-Literals # 0b binary
-0o octal (eight)" />
+<meta property="og:description" content="Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
+go build
+go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.
+Update tools to a newer version: go install location_of_source_code_repo@newer_version" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
@@ -26,7 +24,7 @@ Literals # 0b binary
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.8485755857a6b115eca36b3b565cfc1abcfcd16e67be489b9c2a73f6871dd8f7.js" integrity="sha256-hIV1WFemsRXso2s7Vlz8Grz80W5nvkibnCpz9ocd2Pc=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.2bede35d243063f693cf365cb48edcc06990369a743f1ee5a6f3ffe36dd0eb53.js" integrity="sha256-K&#43;3jXSQwY/aTzzZctI7cwGmQNpp0Px7lpvP/423Q61M=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -253,6 +251,19 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#go-workspace">Go Workspace</a></li>
+    <li><a href="#go-command">go Command</a>
+      <ul>
+        <li><a href="#getting-third-party-go-tools">Getting third party go tools</a></li>
+        <li><a href="#formatting-your-code">Formatting your code</a></li>
+      </ul>
+    </li>
+    <li><a href="#linting-and-vetting">Linting and Vetting</a></li>
+    <li><a href="#makefile">Makefile</a></li>
+    <li><a href="#staying-up-tp-date">Staying Up tp Date</a></li>
+  </ul>
+
+  <ul>
     <li><a href="#build-in-types">Build-in Types</a>
       <ul>
         <li><a href="#zero-value">Zero value</a></li>
@@ -279,6 +290,77 @@ https://github.com/alex-shpak/hugo-book
   Set up GO Environment
   <a class="anchor" href="#set-up-go-environment">#</a>
 </h1>
+<h2 id="go-workspace">
+  Go Workspace
+  <a class="anchor" href="#go-workspace">#</a>
+</h2>
+<pre tabindex="0"><code>export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+</code></pre><p>Use <code>go env</code> to show all the environment variables</p>
+<h2 id="go-command">
+  go Command
+  <a class="anchor" href="#go-command">#</a>
+</h2>
+<p><code>go run</code> compile your code into a binary. However, the binary is build in a temporary directory.</p>
+<p><code>go build</code></p>
+<ul>
+<li><code>go build -o</code> + binary name</li>
+</ul>
+<h3 id="getting-third-party-go-tools">
+  Getting third party go tools
+  <a class="anchor" href="#getting-third-party-go-tools">#</a>
+</h3>
+<p><code>go install location_of_source_code_repo@version</code>:
+Install the binary in <code>$GOPATH/bin</code> directory.</p>
+<p>Update tools to a newer version: <code>go install location_of_source_code_repo@newer_version</code></p>
+<h3 id="formatting-your-code">
+  Formatting your code
+  <a class="anchor" href="#formatting-your-code">#</a>
+</h3>
+<p><code>go fmt</code> automatically reformats your code to match the standard format, including indentation, white space, spacing around operators.</p>
+<p><code>goimports</code> enhanced version of <code>go fmt</code></p>
+<p>Semicolon insertion rule to faster compile and enforce coding style.</p>
+<h2 id="linting-and-vetting">
+  Linting and Vetting
+  <a class="anchor" href="#linting-and-vetting">#</a>
+</h2>
+<p><code>golint</code>: ensure code following style guidelines. Includes properly naming variables, formatting error messages, and placing comments on public methods and types. (are not errors)</p>
+<pre tabindex="0"><code>go install golang.org/x/lint/golint@latest
+golint ./...
+</code></pre><p><code>go vet</code> for passing the wrong number of parameters to formatting methods or assigning values to variables that are never used. <code>go ver ./...</code> for entire project</p>
+<p><code>golangci-lint</code>: combine golint, go vet and others. <code>golangci-lint run</code></p>
+<ul>
+<li><code>.golangci.yml</code> at the root of your project: configure which linters are enabled, which files they analyze.</li>
+<li><a href="https://golangci-lint.run/usage/configuration/">https://golangci-lint.run/usage/configuration/</a></li>
+</ul>
+<h2 id="makefile">
+  Makefile
+  <a class="anchor" href="#makefile">#</a>
+</h2>
+<pre tabindex="0"><code>.DEFAULT_GOAL := build
+
+fmt:
+    go fmt ./..
+.PHONY:fmt
+
+lint: fmt
+    golint ./...
+.PHONY:lint
+
+vet: fmt
+    go vet ./...
+.PHONY:vet
+
+build: vet
+    go build hello.go
+.PHONY:build
+</code></pre><p><code>.DEFAULT_GOAL</code>: which target is run when no target is specified.</p>
+<p><code>name_of_target: targets_must_be_run_before_the_target</code></p>
+<p>The <code>.PHONY</code> line keeps make from getting confused if you ever create a directory in your project with the same name as a target.</p>
+<h2 id="staying-up-tp-date">
+  Staying Up tp Date
+  <a class="anchor" href="#staying-up-tp-date">#</a>
+</h2>
 <p>Install a secondary Go environment</p>
 <pre tabindex="0"><code>go get golang.org/dl/go.1.15.6
 go1.15.6 download
@@ -287,7 +369,17 @@ go1.15.6 build
 <pre tabindex="0"><code>go1.15.6 env GOROOT
 rm -rf $(go1.15.6 env GOROOT)
 rm $(go env GOPATH)/bin/go1.15.6
-</code></pre><h1 id="primitive-types-and-declarations">
+</code></pre><p><code>go get</code> package management</p>
+<p>Environmemnt variable:</p>
+<ul>
+<li>
+<p>variable <code>GOPATH</code>: point to your go workspace</p>
+</li>
+<li>
+<p>variable <code>GOROOT</code>: point to your binary installation of GO</p>
+</li>
+</ul>
+<h1 id="primitive-types-and-declarations">
   Primitive Types and Declarations
   <a class="anchor" href="#primitive-types-and-declarations">#</a>
 </h1>
@@ -331,7 +423,6 @@ fmt.Println(len(x))
 var x [2][3]int // multidimensional arrays
 </code></pre><p>Cannot use a negative index. e.g., <code>x[-1] = 10</code></p>
 <p>Cannot change the size of an array.</p>
-<p>test</p>
 </article>
  
       
@@ -372,6 +463,19 @@ var x [2][3]int // multidimensional arrays
         
   
 <nav id="TableOfContents">
+  <ul>
+    <li><a href="#go-workspace">Go Workspace</a></li>
+    <li><a href="#go-command">go Command</a>
+      <ul>
+        <li><a href="#getting-third-party-go-tools">Getting third party go tools</a></li>
+        <li><a href="#formatting-your-code">Formatting your code</a></li>
+      </ul>
+    </li>
+    <li><a href="#linting-and-vetting">Linting and Vetting</a></li>
+    <li><a href="#makefile">Makefile</a></li>
+    <li><a href="#staying-up-tp-date">Staying Up tp Date</a></li>
+  </ul>
+
   <ul>
     <li><a href="#build-in-types">Build-in Types</a>
       <ul>
