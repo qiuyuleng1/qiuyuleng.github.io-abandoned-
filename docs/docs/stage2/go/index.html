@@ -4,27 +4,31 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+Environmemnt variable:
+variable GOPATH: point to your go workspace
+variable GOROOT: point to your binary installation of GO
 go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
 go build
-go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.
-Update tools to a newer version: go install location_of_source_code_repo@newer_version">
+go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Go" />
 <meta property="og:description" content="Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+Environmemnt variable:
+variable GOPATH: point to your go workspace
+variable GOROOT: point to your binary installation of GO
 go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
 go build
-go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.
-Update tools to a newer version: go install location_of_source_code_repo@newer_version" />
+go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-02-01T15:20:25+08:00" />
+<meta property="article:modified_time" content="2023-02-01T16:44:40+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ff02ff9ef615b475fd9704bb34492ea388a959e8165bd2aa7ad7bbfa2eabedd9.js" integrity="sha256-/wL/nvYVtHX9lwS7NEkuo4ipWegWW9Kqete7&#43;i6r7dk=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.d65a43f9679fb8a3918b917db8f9f61e1fb08d0929000a8c3d52ed947295a886.js" integrity="sha256-1lpD&#43;WefuKORi5F9uPn2Hh&#43;wjQkpAAqMPVLtlHKVqIY=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -274,6 +278,14 @@ https://github.com/alex-shpak/hugo-book
 
   <ul>
     <li><a href="#arrays-too-rigid-to-use-directly">Arrays: Too rigid to use directly</a></li>
+    <li><a href="#slices">Slices</a>
+      <ul>
+        <li><a href="#capacity">Capacity</a></li>
+        <li><a href="#make-slices">make slices</a></li>
+        <li><a href="#declaring-your-slice">Declaring your Slice</a></li>
+        <li><a href="#slicing-slices">Slicing Slices</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -297,6 +309,15 @@ https://github.com/alex-shpak/hugo-book
 <pre tabindex="0"><code>export GOPATH=$HOME/go
 export PATH=$PATH:$GOPATH/bin
 </code></pre><p>Use <code>go env</code> to show all the environment variables</p>
+<p>Environmemnt variable:</p>
+<ul>
+<li>
+<p>variable <code>GOPATH</code>: point to your go workspace</p>
+</li>
+<li>
+<p>variable <code>GOROOT</code>: point to your binary installation of GO</p>
+</li>
+</ul>
 <h2 id="go-command">
   go Command
   <a class="anchor" href="#go-command">#</a>
@@ -370,15 +391,13 @@ go1.15.6 build
 rm -rf $(go1.15.6 env GOROOT)
 rm $(go env GOPATH)/bin/go1.15.6
 </code></pre><p><code>go get</code> package management</p>
-<p>Environmemnt variable:</p>
-<ul>
-<li>
-<p>variable <code>GOPATH</code>: point to your go workspace</p>
-</li>
-<li>
-<p>variable <code>GOROOT</code>: point to your binary installation of GO</p>
-</li>
-</ul>
+<pre tabindex="0"><code>mkdir go_programming
+cd go_programming
+go mod init example.com/test
+go env -w GO111MODULE=on
+go get -d github.com/GoesToEleven/GolangTraining/...
+</code></pre><p>Dowload them in /root/go/pkg/&hellip;</p>
+<p><code>go install xxx</code> will install package in /root/go/bin</p>
 <h1 id="primitive-types-and-declarations">
   Primitive Types and Declarations
   <a class="anchor" href="#primitive-types-and-declarations">#</a>
@@ -422,7 +441,71 @@ fmt.Println(len(x))
 
 var x [2][3]int // multidimensional arrays
 </code></pre><p>Cannot use a negative index. e.g., <code>x[-1] = 10</code></p>
-<p>Cannot change the size of an array.</p>
+<p>Cannot change the size of an array, since length is part of the type the array.</p>
+<h2 id="slices">
+  Slices
+  <a class="anchor" href="#slices">#</a>
+</h2>
+<pre tabindex="0"><code>var x []int
+var x [][]int
+</code></pre><p><code>nil</code>: an identifier that represents the lack of a value for some types</p>
+<p>slices is not comparable. (can use <code>reflect.DeepEqual</code> to compare)</p>
+<pre tabindex="0"><code>var x []int
+var y []int
+fmt.Println(x == y) // compile-time error
+fmt.Println(x == nil) // print true
+len(x) // return 0
+x = append(x, 10, 5, 7)
+var z = []int{1, 2, 3}
+x= append(x, z...)
+</code></pre><blockquote>
+<p>Why need <strong>x</strong> = append(x, 10)?</p>
+<p>Go is a call by value language. Every time you pass a parameter to a function, Go makes a copy of the value that’s passed in. Passing a slice to the append function actually passes a copy of the slice to the function. The function adds the values to the copy of the slice and returns the copy. You then assign the returned slice back to the variable in the calling function.</p>
+</blockquote>
+<h3 id="capacity">
+  Capacity
+  <a class="anchor" href="#capacity">#</a>
+</h3>
+<p>capacity: the number of consecutive memory locations reserved.</p>
+<p>When the length reaches the capacity, there’s no more room to put values.
+If you try to add additional values when the length equals the capacity, the function append uses the Go runtime to allocate a new slice with a larger capacity (usually double the size of the slice, or grow by at least 25%).
+The values in the original slice are copied to the new slice, the new values are added to the end, and the new slice is returned.</p>
+<blockquote>
+<p>Go Runtime</p>
+<ul>
+<li>Go runtime is the software stack responsible for building and running your code.</li>
+<li>Go runtime is compiled into every go binary</li>
+<li>Go runtime provides services like memory allocation and garbage collection, concurrency support, networking, and implementations of built-in types and functions.</li>
+</ul>
+</blockquote>
+<p><code>cap(x)</code> return the current capacity of slice <code>x</code></p>
+<h3 id="make-slices">
+  make slices
+  <a class="anchor" href="#make-slices">#</a>
+</h3>
+<pre tabindex="0"><code>x = make([]int, 5)
+x = append(x, 10) // [0,0,0,0,0,10]
+</code></pre><p><code>append</code> always inceases the length of a slice.</p>
+<h3 id="declaring-your-slice">
+  Declaring your Slice
+  <a class="anchor" href="#declaring-your-slice">#</a>
+</h3>
+<p>Goal: minimize the number of times the slice need to grow</p>
+<ul>
+<li>declaring a slice that might stay nil: <code>var date []int</code></li>
+<li>declaring a slice with default values: <code>date = []int{1, 2, 3}</code></li>
+<li>know how large your slice needs to be, but do not know what those values: using <code>make</code>
+<ul>
+<li>use slice as buffer: nonzero length</li>
+<li>know the exact size you want: specify the length and index into the slice to set the values</li>
+<li>others: <strong>zero length</strong>, specified capacity. allow use <code>append</code> to add items</li>
+</ul>
+</li>
+</ul>
+<h3 id="slicing-slices">
+  Slicing Slices
+  <a class="anchor" href="#slicing-slices">#</a>
+</h3>
 </article>
  
       
@@ -487,6 +570,14 @@ var x [2][3]int // multidimensional arrays
 
   <ul>
     <li><a href="#arrays-too-rigid-to-use-directly">Arrays: Too rigid to use directly</a></li>
+    <li><a href="#slices">Slices</a>
+      <ul>
+        <li><a href="#capacity">Capacity</a></li>
+        <li><a href="#make-slices">make slices</a></li>
+        <li><a href="#declaring-your-slice">Declaring your Slice</a></li>
+        <li><a href="#slicing-slices">Slicing Slices</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

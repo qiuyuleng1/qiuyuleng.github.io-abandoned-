@@ -18,6 +18,11 @@ export PATH=$PATH:$GOPATH/bin
 ```
 Use `go env` to show all the environment variables
 
+Environmemnt variable:
+
++ variable `GOPATH`: point to your go workspace
+
++ variable `GOROOT`: point to your binary installation of GO
 ## go Command
 
 `go run` compile your code into a binary. However, the binary is build in a temporary directory.
@@ -98,11 +103,18 @@ rm $(go env GOPATH)/bin/go1.15.6
 
 `go get` package management
 
-Environmemnt variable:
+```
+mkdir go_programming
+cd go_programming
+go mod init example.com/test
+go env -w GO111MODULE=on
+go get -d github.com/GoesToEleven/GolangTraining/...
+```
+Dowload them in /root/go/pkg/...
 
-+ variable `GOPATH`: point to your go workspace
+`go install xxx` will install package in /root/go/bin
 
-+ variable `GOROOT`: point to your binary installation of GO
+
 
 # Primitive Types and Declarations
 
@@ -141,6 +153,63 @@ var x [2][3]int // multidimensional arrays
 
 Cannot use a negative index. e.g., `x[-1] = 10`
 
-Cannot change the size of an array.
+Cannot change the size of an array, since length is part of the type the array.
 
+## Slices
 
+```
+var x []int
+var x [][]int
+```
+
+`nil`: an identifier that represents the lack of a value for some types
+
+slices is not comparable. (can use `reflect.DeepEqual` to compare)
+```
+var x []int
+var y []int
+fmt.Println(x == y) // compile-time error
+fmt.Println(x == nil) // print true
+len(x) // return 0
+x = append(x, 10, 5, 7)
+var z = []int{1, 2, 3}
+x= append(x, z...)
+```
+
+>Why need **x** = append(x, 10)? 
+>
+>Go is a call by value language. Every time you pass a parameter to a function, Go makes a copy of the value that’s passed in. Passing a slice to the append function actually passes a copy of the slice to the function. The function adds the values to the copy of the slice and returns the copy. You then assign the returned slice back to the variable in the calling function.
+
+### Capacity
+capacity: the number of consecutive memory locations reserved.
+
+When the length reaches the capacity, there’s no more room to put values. 
+If you try to add additional values when the length equals the capacity, the function append uses the Go runtime to allocate a new slice with a larger capacity (usually double the size of the slice, or grow by at least 25%). 
+The values in the original slice are copied to the new slice, the new values are added to the end, and the new slice is returned.
+
+>Go Runtime
+>
+> + Go runtime is the software stack responsible for building and running your code.
+> + Go runtime is compiled into every go binary
+> + Go runtime provides services like memory allocation and garbage collection, concurrency support, networking, and implementations of built-in types and functions.
+
+`cap(x)` return the current capacity of slice `x`
+
+### make slices
+```
+x = make([]int, 5)
+x = append(x, 10) // [0,0,0,0,0,10]
+```
+`append` always inceases the length of a slice.
+
+### Declaring your Slice
+Goal: minimize the number of times the slice need to grow
+
++ declaring a slice that might stay nil: `var date []int`
++ declaring a slice with default values: `date = []int{1, 2, 3}`
++ know how large your slice needs to be, but do not know what those values: using `make`
+    + use slice as buffer: nonzero length
+    + know the exact size you want: specify the length and index into the slice to set the values
+    + others: **zero length**, specified capacity. allow use `append` to add items
+
+### Slicing Slices
