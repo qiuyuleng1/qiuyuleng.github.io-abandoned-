@@ -197,7 +197,7 @@ The values in the original slice are copied to the new slice, the new values are
 
 ### make slices
 ```
-x = make([]int, 5)
+x := make([]int, 5)
 x = append(x, 10) // [0,0,0,0,0,10]
 ```
 `append` always inceases the length of a slice.
@@ -213,3 +213,104 @@ Goal: minimize the number of times the slice need to grow
     + others: **zero length**, specified capacity. allow use `append` to add items
 
 ### Slicing Slices
+
+```
+x := []int{1, 2, 3, 4}
+y := x[:2]
+z := x[1:]
+d := x[1:3]
+e := x[:]
+```
+
+When take a slice from a slice, you are *not* making a copy of the date. You have two variables that are sharing memory.
+
+Changes to an element in a slice affect all slices share that element. NEVER use `append` with subslices.
+
+Use three-part slice expression to limit capacity that is available for the subslice.
+
+### Covert arrays to slices
+
+Take a slice from array using a slice expression
+```
+x := [4]int{5, 6, 7, 8}
+y := x[:2]
+```
+
+Have the same memory-sharing issue.
+
+### Copy
+
+Use copy built-in function to create a slice that is independent of the original.
+
+```
+num := copy(destination_slice, source_slice)
+```
+
+`num` is the number of elements copoed, limited by whichever slice is smaller (length). If do not need `num`, do not need to assign it.
+
+## Strings and Runes and Bytes
+
+# Writing Tests
+
+## The Basics of Testing
+Go tests are placed in the same directory and the same package as the production code.
+
+```
+func addNumbers(x, y int) int {
+    return x + x
+}
+
+func Test_addNumbers(t *testing.T) {
+    result := addNumbers(2,3)
+    if result != 5 {
+        t.Error("incorrect result: expected 5, got", result)
+    }
+}
+```
+
+- Every test file ends with `_test.go`
+- Test functions name `Test` + document/function what you are testing
+- Test functions take in a single parameter of type `*testing.T`. By convention, this parameter is named `t`
+- When there is an incorrect result, we report the error with `t.Error` method.
+- `go test ./...`
+
+### Reporting Test Failures
+
+Error/Errorf: if test several independent items. So that can report as many problems at once.
+
+Fatal/Fatalf: test function exits immediately after the test failure message is generated. If the failure of a check in a test means that further checks in the same test function will
+always fail or cause the test to panic.
+
+### Setting up and tearing down
+
+```
+func TestMain(m *testing.M) {
+    fmt.Println("Set up stuff for tests here")
+    testTime = time.Now()
+    exitVal := m.Run()
+    fmt.Println("Clean up stuff after tests here")
+    os.Exit(exitVal)
+}
+```
+
+- Parameter of type `*testing.M`
+- Running go on a package with a `TestMain` function calls the function instead of invoking the tests directly.
+- Once the state is configured, call the `Run` method on `*testing.M` to run the test functions. 
+  - The `Run` method returns the exit code; 
+  - `0` indicates that all tests passed. 
+- Finally, you must call `os.Exit` with the exit code returned from `Run`.
+- `TestMain` is invoked once, not before and after each individual test
+- you can have only one `TestMain` per package.
+
+Using `Cleanup` method or `defer` statement to clean up temp resources created for a single test.
+
+### Storing Sample Test Data
+Create a subdirectory named `testdata` to hold sample data to test functions.
+
+### Caching Test Results
+
+Go also caches test results when running tests across multiple packages if they have passed and their code hasn’t changed.
+- using `count=1` flag to force tests akways run
+
+### Testing your Public API
+

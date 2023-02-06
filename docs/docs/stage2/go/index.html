@@ -22,13 +22,13 @@ go build -o &#43; binary name Getting third party go tools # go install location
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-02-01T16:44:40+08:00" />
+<meta property="article:modified_time" content="2023-02-02T16:45:42+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.d65a43f9679fb8a3918b917db8f9f61e1fb08d0929000a8c3d52ed947295a886.js" integrity="sha256-1lpD&#43;WefuKORi5F9uPn2Hh&#43;wjQkpAAqMPVLtlHKVqIY=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.eeae53625c3f15f3e601cb2de7a2ff359419d40903e88b3d73765a895131012f.js" integrity="sha256-7q5TYlw/FfPmAcst56L/NZQZ1AkD6Is9c3ZaiVExAS8=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -284,6 +284,21 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#make-slices">make slices</a></li>
         <li><a href="#declaring-your-slice">Declaring your Slice</a></li>
         <li><a href="#slicing-slices">Slicing Slices</a></li>
+        <li><a href="#covert-arrays-to-slices">Covert arrays to slices</a></li>
+        <li><a href="#copy">Copy</a></li>
+      </ul>
+    </li>
+    <li><a href="#strings-and-runes-and-bytes">Strings and Runes and Bytes</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#the-basics-of-testing">The Basics of Testing</a>
+      <ul>
+        <li><a href="#reporting-test-failures">Reporting Test Failures</a></li>
+        <li><a href="#setting-up-and-tearing-down">Setting up and tearing down</a></li>
+        <li><a href="#storing-sample-test-data">Storing Sample Test Data</a></li>
+        <li><a href="#caching-test-results">Caching Test Results</a></li>
+        <li><a href="#testing-your-public-api">Testing your Public API</a></li>
       </ul>
     </li>
   </ul>
@@ -483,7 +498,7 @@ The values in the original slice are copied to the new slice, the new values are
   make slices
   <a class="anchor" href="#make-slices">#</a>
 </h3>
-<pre tabindex="0"><code>x = make([]int, 5)
+<pre tabindex="0"><code>x := make([]int, 5)
 x = append(x, 10) // [0,0,0,0,0,10]
 </code></pre><p><code>append</code> always inceases the length of a slice.</p>
 <h3 id="declaring-your-slice">
@@ -505,6 +520,108 @@ x = append(x, 10) // [0,0,0,0,0,10]
 <h3 id="slicing-slices">
   Slicing Slices
   <a class="anchor" href="#slicing-slices">#</a>
+</h3>
+<pre tabindex="0"><code>x := []int{1, 2, 3, 4}
+y := x[:2]
+z := x[1:]
+d := x[1:3]
+e := x[:]
+</code></pre><p>When take a slice from a slice, you are <em>not</em> making a copy of the date. You have two variables that are sharing memory.</p>
+<p>Changes to an element in a slice affect all slices share that element. NEVER use <code>append</code> with subslices.</p>
+<p>Use three-part slice expression to limit capacity that is available for the subslice.</p>
+<h3 id="covert-arrays-to-slices">
+  Covert arrays to slices
+  <a class="anchor" href="#covert-arrays-to-slices">#</a>
+</h3>
+<p>Take a slice from array using a slice expression</p>
+<pre tabindex="0"><code>x := [4]int{5, 6, 7, 8}
+y := x[:2]
+</code></pre><p>Have the same memory-sharing issue.</p>
+<h3 id="copy">
+  Copy
+  <a class="anchor" href="#copy">#</a>
+</h3>
+<p>Use copy built-in function to create a slice that is independent of the original.</p>
+<pre tabindex="0"><code>num := copy(destination_slice, source_slice)
+</code></pre><p><code>num</code> is the number of elements copoed, limited by whichever slice is smaller (length). If do not need <code>num</code>, do not need to assign it.</p>
+<h2 id="strings-and-runes-and-bytes">
+  Strings and Runes and Bytes
+  <a class="anchor" href="#strings-and-runes-and-bytes">#</a>
+</h2>
+<h1 id="writing-tests">
+  Writing Tests
+  <a class="anchor" href="#writing-tests">#</a>
+</h1>
+<h2 id="the-basics-of-testing">
+  The Basics of Testing
+  <a class="anchor" href="#the-basics-of-testing">#</a>
+</h2>
+<p>Go tests are placed in the same directory and the same package as the production code.</p>
+<pre tabindex="0"><code>func addNumbers(x, y int) int {
+    return x + x
+}
+
+func Test_addNumbers(t *testing.T) {
+    result := addNumbers(2,3)
+    if result != 5 {
+        t.Error(&#34;incorrect result: expected 5, got&#34;, result)
+    }
+}
+</code></pre><ul>
+<li>Every test file ends with <code>_test.go</code></li>
+<li>Test functions name <code>Test</code> + document/function what you are testing</li>
+<li>Test functions take in a single parameter of type <code>*testing.T</code>. By convention, this parameter is named <code>t</code></li>
+<li>When there is an incorrect result, we report the error with <code>t.Error</code> method.</li>
+<li><code>go test ./...</code></li>
+</ul>
+<h3 id="reporting-test-failures">
+  Reporting Test Failures
+  <a class="anchor" href="#reporting-test-failures">#</a>
+</h3>
+<p>Error/Errorf: if test several independent items. So that can report as many problems at once.</p>
+<p>Fatal/Fatalf: test function exits immediately after the test failure message is generated. If the failure of a check in a test means that further checks in the same test function will
+always fail or cause the test to panic.</p>
+<h3 id="setting-up-and-tearing-down">
+  Setting up and tearing down
+  <a class="anchor" href="#setting-up-and-tearing-down">#</a>
+</h3>
+<pre tabindex="0"><code>func TestMain(m *testing.M) {
+    fmt.Println(&#34;Set up stuff for tests here&#34;)
+    testTime = time.Now()
+    exitVal := m.Run()
+    fmt.Println(&#34;Clean up stuff after tests here&#34;)
+    os.Exit(exitVal)
+}
+</code></pre><ul>
+<li>Parameter of type <code>*testing.M</code></li>
+<li>Running go on a package with a <code>TestMain</code> function calls the function instead of invoking the tests directly.</li>
+<li>Once the state is configured, call the <code>Run</code> method on <code>*testing.M</code> to run the test functions.
+<ul>
+<li>The <code>Run</code> method returns the exit code;</li>
+<li><code>0</code> indicates that all tests passed.</li>
+</ul>
+</li>
+<li>Finally, you must call <code>os.Exit</code> with the exit code returned from <code>Run</code>.</li>
+<li><code>TestMain</code> is invoked once, not before and after each individual test</li>
+<li>you can have only one <code>TestMain</code> per package.</li>
+</ul>
+<p>Using <code>Cleanup</code> method or <code>defer</code> statement to clean up temp resources created for a single test.</p>
+<h3 id="storing-sample-test-data">
+  Storing Sample Test Data
+  <a class="anchor" href="#storing-sample-test-data">#</a>
+</h3>
+<p>Create a subdirectory named <code>testdata</code> to hold sample data to test functions.</p>
+<h3 id="caching-test-results">
+  Caching Test Results
+  <a class="anchor" href="#caching-test-results">#</a>
+</h3>
+<p>Go also caches test results when running tests across multiple packages if they have passed and their code hasn’t changed.</p>
+<ul>
+<li>using <code>count=1</code> flag to force tests akways run</li>
+</ul>
+<h3 id="testing-your-public-api">
+  Testing your Public API
+  <a class="anchor" href="#testing-your-public-api">#</a>
 </h3>
 </article>
  
@@ -576,6 +693,21 @@ x = append(x, 10) // [0,0,0,0,0,10]
         <li><a href="#make-slices">make slices</a></li>
         <li><a href="#declaring-your-slice">Declaring your Slice</a></li>
         <li><a href="#slicing-slices">Slicing Slices</a></li>
+        <li><a href="#covert-arrays-to-slices">Covert arrays to slices</a></li>
+        <li><a href="#copy">Copy</a></li>
+      </ul>
+    </li>
+    <li><a href="#strings-and-runes-and-bytes">Strings and Runes and Bytes</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#the-basics-of-testing">The Basics of Testing</a>
+      <ul>
+        <li><a href="#reporting-test-failures">Reporting Test Failures</a></li>
+        <li><a href="#setting-up-and-tearing-down">Setting up and tearing down</a></li>
+        <li><a href="#storing-sample-test-data">Storing Sample Test Data</a></li>
+        <li><a href="#caching-test-results">Caching Test Results</a></li>
+        <li><a href="#testing-your-public-api">Testing your Public API</a></li>
       </ul>
     </li>
   </ul>
