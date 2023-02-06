@@ -313,4 +313,21 @@ Go also caches test results when running tests across multiple packages if they 
 - using `count=1` flag to force tests akways run
 
 ### Testing your Public API
+TODO
+
+### Use go-cmp to Compare Test Results
+TODO
+
+## Table Tests
+TODO
+
+## Checking Your Code Coverage
+
+```
+go test -v -cover -coverprofile=c.out
+go tool cover -html=c.out
+```
+
+- `-cover`: calculate coverage information and include a summary in the test ourtput
+- `-coverprofile`: save the coverage information to a file
 

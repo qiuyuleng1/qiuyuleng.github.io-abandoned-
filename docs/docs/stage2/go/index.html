@@ -22,13 +22,13 @@ go build -o &#43; binary name Getting third party go tools # go install location
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-02-02T16:45:42+08:00" />
+<meta property="article:modified_time" content="2023-02-06T21:48:02+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.eeae53625c3f15f3e601cb2de7a2ff359419d40903e88b3d73765a895131012f.js" integrity="sha256-7q5TYlw/FfPmAcst56L/NZQZ1AkD6Is9c3ZaiVExAS8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.9d44a6426ad2d9040fbaf076248a1dc0efa3e8fce3f8326e0b31b059bc994be8.js" integrity="sha256-nUSmQmrS2QQPuvB2JIodwO&#43;j6Pzj&#43;DJuCzGwWbyZS&#43;g=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -299,8 +299,11 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#storing-sample-test-data">Storing Sample Test Data</a></li>
         <li><a href="#caching-test-results">Caching Test Results</a></li>
         <li><a href="#testing-your-public-api">Testing your Public API</a></li>
+        <li><a href="#use-go-cmp-to-compare-test-results">Use go-cmp to Compare Test Results</a></li>
       </ul>
     </li>
+    <li><a href="#table-tests">Table Tests</a></li>
+    <li><a href="#checking-your-code-coverage">Checking Your Code Coverage</a></li>
   </ul>
 </nav>
 
@@ -623,6 +626,27 @@ always fail or cause the test to panic.</p>
   Testing your Public API
   <a class="anchor" href="#testing-your-public-api">#</a>
 </h3>
+<p>TODO</p>
+<h3 id="use-go-cmp-to-compare-test-results">
+  Use go-cmp to Compare Test Results
+  <a class="anchor" href="#use-go-cmp-to-compare-test-results">#</a>
+</h3>
+<p>TODO</p>
+<h2 id="table-tests">
+  Table Tests
+  <a class="anchor" href="#table-tests">#</a>
+</h2>
+<p>TODO</p>
+<h2 id="checking-your-code-coverage">
+  Checking Your Code Coverage
+  <a class="anchor" href="#checking-your-code-coverage">#</a>
+</h2>
+<pre tabindex="0"><code>go test -v -cover -coverprofile=c.out
+go tool cover -html=c.out
+</code></pre><ul>
+<li><code>-cover</code>: calculate coverage information and include a summary in the test ourtput</li>
+<li><code>-coverprofile</code>: save the coverage information to a file</li>
+</ul>
 </article>
  
       
@@ -708,8 +732,11 @@ always fail or cause the test to panic.</p>
         <li><a href="#storing-sample-test-data">Storing Sample Test Data</a></li>
         <li><a href="#caching-test-results">Caching Test Results</a></li>
         <li><a href="#testing-your-public-api">Testing your Public API</a></li>
+        <li><a href="#use-go-cmp-to-compare-test-results">Use go-cmp to Compare Test Results</a></li>
       </ul>
     </li>
+    <li><a href="#table-tests">Table Tests</a></li>
+    <li><a href="#checking-your-code-coverage">Checking Your Code Coverage</a></li>
   </ul>
 </nav>
 
