@@ -3,32 +3,32 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+<meta name="description" content="Set up Go Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
 Environmemnt variable:
 variable GOPATH: point to your go workspace
 variable GOROOT: point to your binary installation of GO
-go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
+Go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
 go build
 go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Go" />
-<meta property="og:description" content="Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+<meta property="og:description" content="Set up Go Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
 Environmemnt variable:
 variable GOPATH: point to your go workspace
 variable GOROOT: point to your binary installation of GO
-go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
+Go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
 go build
 go build -o &#43; binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-02-06T21:48:02+08:00" />
+<meta property="article:modified_time" content="2023-02-06T22:11:42+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.9d44a6426ad2d9040fbaf076248a1dc0efa3e8fce3f8326e0b31b059bc994be8.js" integrity="sha256-nUSmQmrS2QQPuvB2JIodwO&#43;j6Pzj&#43;DJuCzGwWbyZS&#43;g=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.b3293d9cb51225571f7f5de4b235a0c7a6a56e41620430cb69f10faad32a7b62.js" integrity="sha256-syk9nLUSJVcff13ksjWgx6albkFiBDDLafEPqtMqe2I=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -256,7 +256,7 @@ https://github.com/alex-shpak/hugo-book
 <nav id="TableOfContents">
   <ul>
     <li><a href="#go-workspace">Go Workspace</a></li>
-    <li><a href="#go-command">go Command</a>
+    <li><a href="#go-command">Go Command</a>
       <ul>
         <li><a href="#getting-third-party-go-tools">Getting third party go tools</a></li>
         <li><a href="#formatting-your-code">Formatting your code</a></li>
@@ -274,6 +274,10 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#literals">Literals</a></li>
       </ul>
     </li>
+    <li><a href="#var-versus-">var Versus :=</a></li>
+    <li><a href="#using-const">Using const</a></li>
+    <li><a href="#unused-variables">Unused Variables</a></li>
+    <li><a href="#naming-variables-and-constants">Naming Variables and Constants</a></li>
   </ul>
 
   <ul>
@@ -317,7 +321,7 @@ https://github.com/alex-shpak/hugo-book
       
       
   <article class="markdown"><h1 id="set-up-go-environment">
-  Set up GO Environment
+  Set up Go Environment
   <a class="anchor" href="#set-up-go-environment">#</a>
 </h1>
 <h2 id="go-workspace">
@@ -337,7 +341,7 @@ export PATH=$PATH:$GOPATH/bin
 </li>
 </ul>
 <h2 id="go-command">
-  go Command
+  Go Command
   <a class="anchor" href="#go-command">#</a>
 </h2>
 <p><code>go run</code> compile your code into a binary. However, the binary is build in a temporary directory.</p>
@@ -438,10 +442,48 @@ go get -d github.com/GoesToEleven/GolangTraining/...
 <p>0o octal (eight)</p>
 <p>0x hexadecimal (sixteen)</p>
 <p>For longer integer literals, use underscores to improve readability <code>1_234</code></p>
+<h2 id="var-versus-">
+  var Versus :=
+  <a class="anchor" href="#var-versus-">#</a>
+</h2>
 <p><code>var Versus :=</code></p>
+<h2 id="using-const">
+  Using const
+  <a class="anchor" href="#using-const">#</a>
+</h2>
 <p><code>const x int64 = 10</code></p>
 <p><code>const y = &quot;hello&quot;</code></p>
+<h2 id="unused-variables">
+  Unused Variables
+  <a class="anchor" href="#unused-variables">#</a>
+</h2>
 <p>Every declared local variable must be used.</p>
+<pre tabindex="0"><code>func main() {
+    x := 10
+    x = 20
+    fmt.Println(x)
+    x = 30
+}
+// valid
+</code></pre><p>Go compiler won&rsquo;t stop you from creating unread package-level variables (golangci-lint could detect them).</p>
+<p>Go allows you to create unread constants with <code>const</code>.</p>
+<h2 id="naming-variables-and-constants">
+  Naming Variables and Constants
+  <a class="anchor" href="#naming-variables-and-constants">#</a>
+</h2>
+<p>Go requires identifier names to start with a letter or underscore, and the name can contain numbers, underscores, and letters.</p>
+<p>Idiomatic go doesn&rsquo;t use snake case (names like <code>index_counter</code> or <code>number_tries</code>). Instead, go use camel case (names like <code>indexCounter</code> or <code>numberTries</code>).</p>
+<p>Go uses the case of the first letter in the name of a package-level declaration to determine if the item is accessible outside the package.</p>
+<p>Within a function, favor short variable names.
+The smaller the scope for a variable,
+the shorter the name that’s used for it.
+It is very common in Go to see single-lette variable names.</p>
+<ul>
+<li>The names <code>k</code> and <code>v</code> (short for key and value) are used as the variable names in a for-range loop.</li>
+<li>If you are using a standard for loop, <code>i</code> and <code>j</code> are common names for the index variable.</li>
+<li>Provide variable types and single-letter names. For example, <code>i</code>for integers, <code>f</code> for floats, <code>b</code> for booleans.</li>
+</ul>
+<p>For variables and constants in package block, we need to use more descriptive names.</p>
 <h1 id="composite-types">
   Composite Types
   <a class="anchor" href="#composite-types">#</a>
@@ -689,7 +731,7 @@ go tool cover -html=c.out
 <nav id="TableOfContents">
   <ul>
     <li><a href="#go-workspace">Go Workspace</a></li>
-    <li><a href="#go-command">go Command</a>
+    <li><a href="#go-command">Go Command</a>
       <ul>
         <li><a href="#getting-third-party-go-tools">Getting third party go tools</a></li>
         <li><a href="#formatting-your-code">Formatting your code</a></li>
@@ -707,6 +749,10 @@ go tool cover -html=c.out
         <li><a href="#literals">Literals</a></li>
       </ul>
     </li>
+    <li><a href="#var-versus-">var Versus :=</a></li>
+    <li><a href="#using-const">Using const</a></li>
+    <li><a href="#unused-variables">Unused Variables</a></li>
+    <li><a href="#naming-variables-and-constants">Naming Variables and Constants</a></li>
   </ul>
 
   <ul>

@@ -68,11 +68,11 @@ git fetch origin &amp;lt;source远&amp;gt;:&amp;lt;destination本地&amp;gt;
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>http://example.org/docs/stage2/go/</guid>
-      <description>Set up GO Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
+      <description>Set up Go Environment # Go Workspace # export GOPATH=$HOME/go export PATH=$PATH:$GOPATH/bin Use go env to show all the environment variables
 Environmemnt variable:
 variable GOPATH: point to your go workspace
 variable GOROOT: point to your binary installation of GO
-go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
+Go Command # go run compile your code into a binary. However, the binary is build in a temporary directory.
 go build
 go build -o + binary name Getting third party go tools # go install location_of_source_code_repo@version: Install the binary in $GOPATH/bin directory.</description>
     </item>

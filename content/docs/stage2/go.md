@@ -9,7 +9,7 @@ weight: 1
 # bookSearchExclude: false
 ---
 
-# Set up GO Environment
+# Set up Go Environment
 
 ## Go Workspace
 ```
@@ -23,7 +23,7 @@ Environmemnt variable:
 + variable `GOPATH`: point to your go workspace
 
 + variable `GOROOT`: point to your binary installation of GO
-## go Command
+## Go Command
 
 `go run` compile your code into a binary. However, the binary is build in a temporary directory.
 
@@ -131,13 +131,51 @@ default zero value to any variable that is declared but not assigned a values.
 
 For longer integer literals, use underscores to improve readability `1_234`
 
+## var Versus :=
 `var Versus :=`
+
+## Using const
 
 `const x int64 = 10`
 
 `const y = "hello"`
 
+## Unused Variables
+
 Every declared local variable must be used.
+
+```
+func main() {
+    x := 10
+    x = 20
+    fmt.Println(x)
+    x = 30
+}
+// valid
+```
+
+Go compiler won't stop you from creating unread package-level variables (golangci-lint could detect them).
+
+Go allows you to create unread constants with `const`.
+
+## Naming Variables and Constants
+
+Go requires identifier names to start with a letter or underscore, and the name can contain numbers, underscores, and letters.
+
+Idiomatic go doesn't use snake case (names like `index_counter` or `number_tries`). Instead, go use camel case (names like `indexCounter` or `numberTries`).
+
+Go uses the case of the first letter in the name of a package-level declaration to determine if the item is accessible outside the package.
+
+Within a function, favor short variable names. 
+The smaller the scope for a variable,
+the shorter the name that’s used for it. 
+It is very common in Go to see single-lette variable names.
+- The names `k` and `v` (short for key and value) are used as the variable names in a for-range loop.
+- If you are using a standard for loop, `i` and `j` are common names for the index variable.
+- Provide variable types and single-letter names. For example, `i`for integers, `f` for floats, `b` for booleans.
+
+For variables and constants in package block, we need to use more descriptive names.
+
 # Composite Types
 ## Arrays: Too rigid to use directly
 ```
