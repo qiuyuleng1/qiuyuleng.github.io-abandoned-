@@ -9,7 +9,7 @@ weight: 1
 # bookSearchExclude: false
 ---
 
-# Set up Go Environment
+# Chapter 1: Set up Go Environment
 
 ## Go Workspace
 ```
@@ -116,7 +116,7 @@ Dowload them in /root/go/pkg/...
 
 
 
-# Primitive Types and Declarations
+# Chapter 2: Primitive Types and Declarations
 
 ## Build-in Types
 booolenas, integers, floats, strings
@@ -176,7 +176,7 @@ It is very common in Go to see single-lette variable names.
 
 For variables and constants in package block, we need to use more descriptive names.
 
-# Composite Types
+# Chapter 3: Composite Types
 ## Arrays: Too rigid to use directly
 ```
 var x1 [3]int // x[0], x[1] and x[2] are initialized to zero.
@@ -404,13 +404,164 @@ if intSet[100] {
 }
 ```
 
-
 ## Structs
 
+For maps, 
+- They don’t define an API since there’s no way to constrain a map to only allow certain
+keys
+- All values in a map must be of the same type
 
+```
+type person struct {
+    name string
+    age int
+    pet string
+}
+```
+- There are no commas separating the fields in a struct
+declaration.
+- A struct type that’s defined within a function can only be used within that function.
+
+```
+var fred person
+bob := person{}
+// No difference for the above two methods
+```
+
+Since no value is assigned to `fred`, it gets the zero value for the `person` struct type. A zero value struct has every field set to the
+field’s zero value.
+
+```
+julia := person{
+    "Julia",
+    40,
+    "cat",
+}
+```
+A struct literal can be specified as a comma-separated list of values for the fields inside of braces (in order). Used for simple struct
+
+```
+beth := person{
+age: 30,
+name: "Beth",
+}
+```
+Map literal style: you can leave out keys and specify the fields in any order. Used for complex struct.
+
+```
+bob.name = "Bob"
+fmt.Println(beth.name)
+```
+Dotted notation.
+
+### Anonymous Structs
+
+```
+var person struct {
+    name string
+    age int
+    pet string
+}
+
+person.name = "bob"
+person.age = 50
+person.pet = "dog"
+
+pet := struct {
+    name string
+    kind string
+}{
+    name: "Fido",
+    kind: "dog",
+}
+```
+Usages for anonymous struct:
+- Translate external data into a struct or a struct into external data (like JSON or protocol buffers) (called unmarshaling and marshaling
+data)
+- Anonymous structs pop up: writing table-driven tests
+
+### Comparing and Converting Structs
+Whether or not a struct is comparable depends on the struct’s fields.
+Structs consists slice or map fields (and function and channel) fields are not comparable.
+
+Go doesn’t allow comparisons between variables that represent structs of different types.
+
+Go allow type conversion from one struct type to another if the fields of both structs have the same names, order, and types.
+
+```
+type firstPerson struct {
+    name string
+    age int
+}
+
+type secondPerson struct {
+    name string
+    age int
+}
+
+type thirdPerson struct {
+    age int
+    name string
+}
+
+type fourthPerson struct {
+    firstName string
+    age int
+}
+
+type fifthPerson struct {
+    name string
+    age int
+    favoriteColor string
+}
+```
+
+```
+person := firstPerson{
+	name: "Bob",
+	age:  50,
+}
+
+person2 := secondPerson(person)
+
+fmt.Println(person2)
+fmt.Printf("%T", person2) // secondPerson
+fmt.Printf("%T", person) //firstPerson
+fmt.Println(person2 == person)// error: mismatched types secondPerson and firstPerson
+```
+
+- Can use a type conversion to convert an instance of `firstPerson` to
+`secondPerson`
+    - How to convert? `person := firstPerson{} person2 = secondPerson(person)`?
+- Cannot use `==` to compare an instance of `firstPerson` and an instance of `secondPerson` (because they are different types)
+- Cannot convert an instance of `firstPerson` to `thirdPerson`, because the fields are in a different order
+- Cannot convert an instance of firstPerson to fourthPerson because the field names don’t match
+- Cannot convert an instance of firstPerson to fifthPerson because there’s an additional field
+
+```
+type firstPerson struct {
+	name string
+	age  int
+}
+f := firstPerson{
+	name: "Bob",
+	age:  50,
+}
+var g struct {
+	name string
+	age  int
+}
+// compiles -- can use = and == between identical named and anonymous structs
+g = f
+fmt.Println(f == g)
+```
+If two struct variables are being compared and at least one of them has a type that’s an anonymous struct, 
+you can compare them without a type conversion if the fields of both structs have the same names, order, and types. 
+You can also assign between named and anonymous struct types if
+the fields of both structs have the same names, order, and types
 # Chapter 4: Blocks, Shadows, and Control Structures
 
-# Writing Tests
+# Chapter 13: Writing Tests
 
 ## The Basics of Testing
 Go tests are placed in the same directory and the same package as the production code.
