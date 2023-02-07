@@ -288,6 +288,128 @@ num := copy(destination_slice, source_slice)
 
 ## Strings and Runes and Bytes
 
+String is composed of a sequence of UTF-8-encoded code points.
+> UTF-8: most commonly used encoding for Unicode
+> 
+> Unicode uses foru bytes (32 bits) to represent each code point (code point is the technical name for each character and modifier) : UTF-32 (waste so much space)
+> 
+> UTF-16 (wasteful)
+> 
+> UTF-8: allow you to look at any byte in a sequence and tell if you are at the start of a UTF-8 sequence, or somewhere in the middle.
+
+
+Slice substrings. `s[2]` and `s[2:]`
+- A string is composed of a sequence of bytes, while a code point in UTF-8 can be anywhere from one to four bytes long. (such as emoji)
+- Only use slicing when you know that your string only contains chars that take up one byte.
+- Instead of using slice and index expressions, try to use functions in `strings` and `unicode/utf8` packages to iterate over the code points in a string. (*next chapter*)
+
+`len(s)`
+
+Covert a single rune or byte to a string
+```
+var a rune = 'x'
+var s string = string(a)
+var b byte = 'y'
+var s2 string = string(b)
+```
+Cannot convert an int into a string
+```
+var x int = 65
+var y = string(x)
+fmt.Println(y) // do not print 65, but A
+```
+
+## Maps
+Declare map: `map[keyType]valueType`
+```
+var nilMap map[string]int // declare nil map
+totalWins := map[string]int{} // declare empty map
+ages := make(map[int][]string, 10)
+```
+
+- Maps are not comparable. You can check if a map equal to nil, but you cannot check if two maps have identical keys and values using `==` or `!=`
+- Know how many key-values pairs, using `make` to create a map
+- `len(map)`
+- The key for a map must be comparable type (cannot use slice or map)
+- The type of the value can be anything
+
+> Hash Map
+>
+> When insert a key and value, the key is turned into a number using a *hash algorithm*
+>
+> When two keys map to the same bucket, cause collision.
+>
+> Go does not require (allow) you to define your own hash algorithm.
+
+### Reading and Writing a Map
+
+```
+totalWins := map[string]int{}
+totalWins["Orcas"] = 1
+totalWins["Lions"] = 2
+fmt.Println(totalWins["Orcas"])
+fmt.Println(totalWins["Kittens"]) // 0
+totalWins["Kittens"]++
+fmt.Println(totalWins["Kittens"])
+totalWins["Lions"] = 3
+fmt.Println(totalWins["Lions"])
+```
+
+When we try to read the value assigned to a map key that was never set, the map returns the *zero* value for the map’s value type.
+
+### The comma ok idiom
+
+Comma ok idiom tells the difference between a key that's associated with a zero value and a key that is not in the map.
+
+```
+m := map[string]int{
+"hello": 5,
+"world": 0,
+}
+v, ok := m["hello"]
+fmt.Println(v, ok) // 5, true
+v, ok = m["world"]
+fmt.Println(v, ok) // 0, true
+v, ok = m["goodbye"]
+fmt.Println(v, ok) // 0, false
+```
+
+### Deleting from Maps
+```
+m := map[string]int{
+"hello": 5,
+"world": 10,
+}
+delete(m, "hello")
+```
+
+### Using Maps as Sets
+
+Set is a data type that ensures there is at most one of a value, but not guarantee the values are in any particular order.
+
+Go does not include a set, but we can use a map to simulate some of its features. 
+Create a map where the keys are of int type and the values are of bool type.
+
+```
+intSet := map[int]bool{}
+vals := []int{5, 10, 2, 5, 8, 7, 3, 9, 1, 2, 10}
+for _, v := range vals {
+    intSet[v] = true
+}
+fmt.Println(len(vals), len(intSet))
+fmt.Println(intSet[5])
+fmt.Println(intSet[500])
+if intSet[100] {
+    fmt.Println("100 is in the set")
+}
+```
+
+
+## Structs
+
+
+# Chapter 4: Blocks, Shadows, and Control Structures
+
 # Writing Tests
 
 ## The Basics of Testing

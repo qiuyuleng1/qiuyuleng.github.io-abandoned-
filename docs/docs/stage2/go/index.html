@@ -22,13 +22,13 @@ go build -o &#43; binary name Getting third party go tools # go install location
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-02-06T22:11:42+08:00" />
+<meta property="article:modified_time" content="2023-02-07T12:35:22+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.b3293d9cb51225571f7f5de4b235a0c7a6a56e41620430cb69f10faad32a7b62.js" integrity="sha256-syk9nLUSJVcff13ksjWgx6albkFiBDDLafEPqtMqe2I=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.bf6feadebe52b207bf8afa8bca46414f13c5f81d783b6153b1492a2b153b4ec6.js" integrity="sha256-v2/q3r5Ssge/ivqLykZBTxPF&#43;B14O2FTsUkqKxU7TsY=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -293,6 +293,15 @@ https://github.com/alex-shpak/hugo-book
       </ul>
     </li>
     <li><a href="#strings-and-runes-and-bytes">Strings and Runes and Bytes</a></li>
+    <li><a href="#maps">Maps</a>
+      <ul>
+        <li><a href="#reading-and-writing-a-map">Reading and Writing a Map</a></li>
+        <li><a href="#the-comma-ok-idiom">The comma ok idiom</a></li>
+        <li><a href="#deleting-from-maps">Deleting from Maps</a></li>
+        <li><a href="#using-maps-as-sets">Using Maps as Sets</a></li>
+      </ul>
+    </li>
+    <li><a href="#structs">Structs</a></li>
   </ul>
 
   <ul>
@@ -593,6 +602,114 @@ y := x[:2]
   Strings and Runes and Bytes
   <a class="anchor" href="#strings-and-runes-and-bytes">#</a>
 </h2>
+<p>String is composed of a sequence of UTF-8-encoded code points.</p>
+<blockquote>
+<p>UTF-8: most commonly used encoding for Unicode</p>
+<p>Unicode uses foru bytes (32 bits) to represent each code point (code point is the technical name for each character and modifier) : UTF-32 (waste so much space)</p>
+<p>UTF-16 (wasteful)</p>
+<p>UTF-8: allow you to look at any byte in a sequence and tell if you are at the start of a UTF-8 sequence, or somewhere in the middle.</p>
+</blockquote>
+<p>Slice substrings. <code>s[2]</code> and <code>s[2:]</code></p>
+<ul>
+<li>A string is composed of a sequence of bytes, while a code point in UTF-8 can be anywhere from one to four bytes long. (such as emoji)</li>
+<li>Only use slicing when you know that your string only contains chars that take up one byte.</li>
+<li>Instead of using slice and index expressions, try to use functions in <code>strings</code> and <code>unicode/utf8</code> packages to iterate over the code points in a string. (<em>next chapter</em>)</li>
+</ul>
+<p><code>len(s)</code></p>
+<p>Covert a single rune or byte to a string</p>
+<pre tabindex="0"><code>var a rune = &#39;x&#39;
+var s string = string(a)
+var b byte = &#39;y&#39;
+var s2 string = string(b)
+</code></pre><p>Cannot convert an int into a string</p>
+<pre tabindex="0"><code>var x int = 65
+var y = string(x)
+fmt.Println(y) // do not print 65, but A
+</code></pre><h2 id="maps">
+  Maps
+  <a class="anchor" href="#maps">#</a>
+</h2>
+<p>Declare map: <code>map[keyType]valueType</code></p>
+<pre tabindex="0"><code>var nilMap map[string]int // declare nil map
+totalWins := map[string]int{} // declare empty map
+ages := make(map[int][]string, 10)
+</code></pre><ul>
+<li>Maps are not comparable. You can check if a map equal to nil, but you cannot check if two maps have identical keys and values using <code>==</code> or <code>!=</code></li>
+<li>Know how many key-values pairs, using <code>make</code> to create a map</li>
+<li><code>len(map)</code></li>
+<li>The key for a map must be comparable type (cannot use slice or map)</li>
+<li>The type of the value can be anything</li>
+</ul>
+<blockquote>
+<p>Hash Map</p>
+<p>When insert a key and value, the key is turned into a number using a <em>hash algorithm</em></p>
+<p>When two keys map to the same bucket, cause collision.</p>
+<p>Go does not require (allow) you to define your own hash algorithm.</p>
+</blockquote>
+<h3 id="reading-and-writing-a-map">
+  Reading and Writing a Map
+  <a class="anchor" href="#reading-and-writing-a-map">#</a>
+</h3>
+<pre tabindex="0"><code>totalWins := map[string]int{}
+totalWins[&#34;Orcas&#34;] = 1
+totalWins[&#34;Lions&#34;] = 2
+fmt.Println(totalWins[&#34;Orcas&#34;])
+fmt.Println(totalWins[&#34;Kittens&#34;]) // 0
+totalWins[&#34;Kittens&#34;]++
+fmt.Println(totalWins[&#34;Kittens&#34;])
+totalWins[&#34;Lions&#34;] = 3
+fmt.Println(totalWins[&#34;Lions&#34;])
+</code></pre><p>When we try to read the value assigned to a map key that was never set, the map returns the <em>zero</em> value for the map’s value type.</p>
+<h3 id="the-comma-ok-idiom">
+  The comma ok idiom
+  <a class="anchor" href="#the-comma-ok-idiom">#</a>
+</h3>
+<p>Comma ok idiom tells the difference between a key that&rsquo;s associated with a zero value and a key that is not in the map.</p>
+<pre tabindex="0"><code>m := map[string]int{
+&#34;hello&#34;: 5,
+&#34;world&#34;: 0,
+}
+v, ok := m[&#34;hello&#34;]
+fmt.Println(v, ok) // 5, true
+v, ok = m[&#34;world&#34;]
+fmt.Println(v, ok) // 0, true
+v, ok = m[&#34;goodbye&#34;]
+fmt.Println(v, ok) // 0, false
+</code></pre><h3 id="deleting-from-maps">
+  Deleting from Maps
+  <a class="anchor" href="#deleting-from-maps">#</a>
+</h3>
+<pre tabindex="0"><code>m := map[string]int{
+&#34;hello&#34;: 5,
+&#34;world&#34;: 10,
+}
+delete(m, &#34;hello&#34;)
+</code></pre><h3 id="using-maps-as-sets">
+  Using Maps as Sets
+  <a class="anchor" href="#using-maps-as-sets">#</a>
+</h3>
+<p>Set is a data type that ensures there is at most one of a value, but not guarantee the values are in any particular order.</p>
+<p>Go does not include a set, but we can use a map to simulate some of its features.
+Create a map where the keys are of int type and the values are of bool type.</p>
+<pre tabindex="0"><code>intSet := map[int]bool{}
+vals := []int{5, 10, 2, 5, 8, 7, 3, 9, 1, 2, 10}
+for _, v := range vals {
+    intSet[v] = true
+}
+fmt.Println(len(vals), len(intSet))
+fmt.Println(intSet[5])
+fmt.Println(intSet[500])
+if intSet[100] {
+    fmt.Println(&#34;100 is in the set&#34;)
+}
+</code></pre><h2 id="structs">
+  Structs
+  <a class="anchor" href="#structs">#</a>
+</h2>
+<h1 id="chapter-4-blocks-shadows-and-control-structures">
+  Chapter 4: Blocks, Shadows, and Control Structures
+  <a class="anchor" href="#chapter-4-blocks-shadows-and-control-structures">#</a>
+</h1>
 <h1 id="writing-tests">
   Writing Tests
   <a class="anchor" href="#writing-tests">#</a>
@@ -768,6 +885,15 @@ go tool cover -html=c.out
       </ul>
     </li>
     <li><a href="#strings-and-runes-and-bytes">Strings and Runes and Bytes</a></li>
+    <li><a href="#maps">Maps</a>
+      <ul>
+        <li><a href="#reading-and-writing-a-map">Reading and Writing a Map</a></li>
+        <li><a href="#the-comma-ok-idiom">The comma ok idiom</a></li>
+        <li><a href="#deleting-from-maps">Deleting from Maps</a></li>
+        <li><a href="#using-maps-as-sets">Using Maps as Sets</a></li>
+      </ul>
+    </li>
+    <li><a href="#structs">Structs</a></li>
   </ul>
 
   <ul>
