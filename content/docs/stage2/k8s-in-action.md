@@ -479,3 +479,13 @@ pod就绪后发出信号
 将service的spec中的clusterIP设置为None，就会使服务成为headless服务。
 
 k8s不会为headless服务分配集群IP，客户端可以通过这个IP连接到支持它的pod
+
+自己部署k8s集群参考链接：
+
+sealos:
+- https://developer.aliyun.com/article/1113271#slide-6
+- https://github.com/labring/sealos
+
+rancher:
+- https://blog.csdn.net/weixin_47752736/article/details/125018358#:~:text=rancher%20%E5%AE%89%E8%A3%85%20%E9%83%A8%E7%BD%B2%20k8s%201%201.%20%E4%B8%8B%E8%BD%BDRancher%202,5.%20%E8%BF%9B%E5%85%A5rancher%E6%8E%A7%E5%88%B6%E5%8F%B0%206%206.%20%E9%80%9A%E8%BF%87%E9%83%A8%E7%BD%B2rancher%E7%9A%84%E5%AE%B9%E5%99%A8%E8%BF%9B%E5%85%A5%207%207.%20%E9%83%A8%E7%BD%B2Prometheus%E7%9B%91%E6%8E%A7%E9%A1%B5%E9%9D%A2
+- https://www.rancher.cn/quick-start/

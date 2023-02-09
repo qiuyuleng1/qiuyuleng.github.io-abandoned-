@@ -62,7 +62,7 @@ Kubernetes 通过配置Docker 来让一个pod 内的所有容器共享相同的L
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e439d763eddca0b3608a4fdb1ad731b24b61e58f3680d5f476f6564f194da9f8.js" integrity="sha256-5DnXY&#43;3coLNgik/bGtcxskth5Y82gNX0dvZWTxlNqfg=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.fd13a02379b669a6e83c4dc7a34f7b80e40702dd5920abfc9822307d192c013f.js" integrity="sha256-/ROgI3m2aaboPE3Ho097gOQHAt1ZIKv8mCIwfRksAT8=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -550,6 +550,17 @@ k expose 
 <p>使用headless服务来发现独立的pod
 将service的spec中的clusterIP设置为None，就会使服务成为headless服务。</p>
 <p>k8s不会为headless服务分配集群IP，客户端可以通过这个IP连接到支持它的pod</p>
+<p>自己部署k8s集群参考链接：</p>
+<p>sealos:</p>
+<ul>
+<li><a href="https://developer.aliyun.com/article/1113271#slide-6">https://developer.aliyun.com/article/1113271#slide-6</a></li>
+<li><a href="https://github.com/labring/sealos">https://github.com/labring/sealos</a></li>
+</ul>
+<p>rancher:</p>
+<ul>
+<li><a href="https://blog.csdn.net/weixin_47752736/article/details/125018358#:~:text=rancher%20%E5%AE%89%E8%A3%85%20%E9%83%A8%E7%BD%B2%20k8s%201%201.%20%E4%B8%8B%E8%BD%BDRancher%202,5.%20%E8%BF%9B%E5%85%A5rancher%E6%8E%A7%E5%88%B6%E5%8F%B0%206%206.%20%E9%80%9A%E8%BF%87%E9%83%A8%E7%BD%B2rancher%E7%9A%84%E5%AE%B9%E5%99%A8%E8%BF%9B%E5%85%A5%207%207.%20%E9%83%A8%E7%BD%B2Prometheus%E7%9B%91%E6%8E%A7%E9%A1%B5%E9%9D%A2">https://blog.csdn.net/weixin_47752736/article/details/125018358#:~:text=rancher%20%E5%AE%89%E8%A3%85%20%E9%83%A8%E7%BD%B2%20k8s%201%201.%20%E4%B8%8B%E8%BD%BDRancher%202,5.%20%E8%BF%9B%E5%85%A5rancher%E6%8E%A7%E5%88%B6%E5%8F%B0%206%206.%20%E9%80%9A%E8%BF%87%E9%83%A8%E7%BD%B2rancher%E7%9A%84%E5%AE%B9%E5%99%A8%E8%BF%9B%E5%85%A5%207%207.%20%E9%83%A8%E7%BD%B2Prometheus%E7%9B%91%E6%8E%A7%E9%A1%B5%E9%9D%A2</a></li>
+<li><a href="https://www.rancher.cn/quick-start/">https://www.rancher.cn/quick-start/</a></li>
+</ul>
 </article>
  
       

@@ -561,6 +561,206 @@ You can also assign between named and anonymous struct types if
 the fields of both structs have the same names, order, and types
 # Chapter 4: Blocks, Shadows, and Control Structures
 
+## Blocks
+Each place where a declaration occurs is called a block.
+- package block: declare variables, constants, types, and functions
+- file block: `import` statement
+
+## Shadowing Variables
+```
+func main() {
+	x := 10
+	if x > 5 {
+		fmt.Println(x) // 10
+		x := 5
+		fmt.Println(x) // 5
+	}
+	fmt.Println(x) // 10
+}
+```
+A shadowing variable is a variable that has the same name as a variable in a containing block.
+For as long as the shadowing variable exists, you cannot access a *shadowed* variable.
+
+```
+func main() {
+    x := 10
+    fmt.Println(x)
+    fmt := "oops"
+    fmt.Println(fmt)
+}
+```
+Shadowing package names: `fmt.Println undefined (type string has no field or method Println)`
+
+## Detecting Shadowed Variables
+
+It is good to make sure that you do not have any shadowed variables in your programs.
+
+```
+go install golang.org/x/tools/go/analysis/passes/shadow/cmd/shadow@latest
+```
+
+Then in Makefile, add `shadow ./..`
+
+> What is the meanning of block, scopes, and identifier?
+
+```
+fmt.Println(true) // true
+true := 10
+fmt.Println(true) // 10
+```
+
+> The Universe Block
+>
+> The built-in types (like `int` and `string`), constants (like `true` and `false`), functions (like `make` or `close`) and `nil` are not included in Go 25 keywords.
+> Go considers these predeclared identifier and defines them in the `universe block`.
+>
+> You must be very careful to never redefine any of the identifiers in the universe block.
+>
+> Not even shadow detects shadowing of universe block identifiers.
+
+## if
+
+```
+n := rand.Intn(10)
+if n == 0 {
+    fmt.Println("That's too low")
+} else if n > 5 {
+    fmt.Println("That's too big:", n)
+} else {
+    fmt.Println("That's a good number:", n)
+}
+```
+
+Go can declare variables that are scoped to the condition and to both the `if` and `else` blocks. You can shadow variables here.
+
+```
+if n := rand.Intn(10); n == 0 {
+    fmt.Println("That's too low")
+} else if n > 5 {
+    fmt.Println("That's too big:", n)
+} else {
+    fmt.Println("That's a good number:", n)
+}
+fmt.Println(n) // undefined: n
+```
+Once the series of `if/else` statements ends, `n` is undefined.
+
+## for, Four Ways
+
+`for` is the *only* looping keyword in Go:
+- A complete, C-style `for`
+- A condition-only `for`
+- An infinite `for`
+- `for-range`
+
+### The Complete for Statement
+
+```
+for i := 0; i < 10; i++ {
+    fmt.Println(i)
+}
+```
+
+- three parts, separated by `;`
+- use `:=` to initialize the variable, not `var`
+- you can shadow a variable here
+  
+### The Condition-Only for Statement
+
+```
+i := 1
+for i < 100 {
+    fmt.Println(i)
+    i = i * 2
+}
+```
+
+### The Infinite for Statement
+```
+func main() {
+    for {
+        fmt.Println("Hello")
+    }
+}
+```
+
+Print "Hello" forever.
+
+### break and continue
+
+```
+for {
+    // things to do in the loop
+    if !CONDITION {
+        break
+    }
+}
+```
+
+```
+//confusing code
+for i := 1; i <= 100; i++ {
+    if i%3 == 0 {
+        if i%5 == 0 {
+            fmt.Println("FizzBuzz")
+        } else {
+            fmt.Println("Fizz")
+        }
+    } else if i%5 == 0 {
+        fmt.Println("Buzz")
+    } else {
+        fmt.Println(i)
+    }
+}
+```
+
+continue: skips over the rest of the body of a `for` loop and proceeds directly to the next iteration.
+
+
+```
+// as left-aligned as possible
+for i := 1; i <= 100; i++ {
+    if i%3 == 0 && i%5 == 0 {
+        fmt.Println("FizzBuzz")
+        continue
+    }
+    if i%3 == 0 {
+        fmt.Println("Fizz")
+        continue
+    }
+    if i%5 == 0 {
+        fmt.Println("Buzz")
+        continue
+    }
+    fmt.Println(i)
+}
+```
+
+### The for-range Statement
+
+```
+evenVals := []int{2, 4, 6, 8, 10, 12}
+for i, v := range evenVals {
+    fmt.Println(i, v)
+}
+```
+- You can also iterate over user-defined types.
+- The first variable `i` is the position in the data structure being iterated
+    - you can use `i` for array, slice or string index, use `k` for map key
+    - if you do not need it, using `_`: `for _, v := range evenVals`
+- the second `v` is the value at that position.
+
+Want the key, but do not want the value: just leave off the second variable. The most common reason for iterating over the key is when a map is being used as a set.
+```
+uniqueNames := map[string]bool{"Fred": true, "Raul": true, "Wilma": true}
+for k := range uniqueNames {
+    fmt.Println(k)
+}
+```
+
+#### Iterating over maps
+
+
 # Chapter 13: Writing Tests
 
 ## The Basics of Testing
@@ -574,7 +774,7 @@ func addNumbers(x, y int) int {
 func Test_addNumbers(t *testing.T) {
     result := addNumbers(2,3)
     if result != 5 {
-        t.Error("incorrect result: expected 5, got", result)
+i    t.Error("incorrect result: expected 5, got", result)
     }
 }
 ```
