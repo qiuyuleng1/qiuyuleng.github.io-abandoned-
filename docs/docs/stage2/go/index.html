@@ -22,13 +22,13 @@ go build -o &#43; binary name Getting third party go tools # go install location
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://example.org/docs/stage2/go/" /><meta property="article:section" content="docs" />
 
-<meta property="article:modified_time" content="2023-02-07T22:55:17+08:00" />
+<meta property="article:modified_time" content="2023-02-09T16:35:23+08:00" />
 <title>Go | My CS Learning</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.c58292d36b18b675680ab9baea2029204537b839ea72f258746ec0f32ce8d6c8.css" integrity="sha256-xYKS02sYtnVoCrm66iApIEU3uDnqcvJYdG7A8yzo1sg=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.fd13a02379b669a6e83c4dc7a34f7b80e40702dd5920abfc9822307d192c013f.js" integrity="sha256-/ROgI3m2aaboPE3Ho097gOQHAt1ZIKv8mCIwfRksAT8=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.d21bb57d4c3f130cf6b7b017952e0df457da08ecfd8a0726fdead1d98fdde857.js" integrity="sha256-0hu1fUw/Ewz2t7AXlS4N9FfaCOz9igcm/erR2Y/d6Fc=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -1051,7 +1051,36 @@ for k := range uniqueNames {
   Iterating over maps
   <a class="anchor" href="#iterating-over-maps">#</a>
 </h4>
-<h1 id="chapter-13-writing-tests">
+<pre tabindex="0"><code>m := map[string]int{
+    &#34;a&#34;: 1,
+    &#34;c&#34;: 3,
+    &#34;b&#34;: 2,
+}
+for i := 0; i &lt; 3; i++ {
+    fmt.Println(&#34;Loop&#34;, i)
+    for k, v := range m {
+        fmt.Println(k, v)
+    }
+}
+</code></pre><p>The order of the keys and values varies.
+This is a security feature to avoid <em>Hash Dos</em>.</p>
+<p>To make it easier to debug, the formatting function (like <code>fmt.Println</code> always output maps with their keys in ascending sorted order).</p>
+<h4 id="iterating-over-strings">
+  Iterating over strings
+  <a class="anchor" href="#iterating-over-strings">#</a>
+</h4>
+<p>When iterating over a string with <code>for-range</code> loop, it iterates over <code>runes</code>, not <code>bytes</code>, in order.</p>
+<h4 id="the-for-range-value-is-a-copy">
+  The for-range value is a copy
+  <a class="anchor" href="#the-for-range-value-is-a-copy">#</a>
+</h4>
+<p>The <code>for-range</code> loop copies the value from the compound type to the value variable. Modifying the value does not modify the source.</p>
+<pre tabindex="0"><code>evenVals := []int{2, 4, 6, 8, 10, 12}
+for _, v := range evenVals {
+    v *= 2
+}
+fmt.Println(evenVals) // 2,4,6,8,10,12
+</code></pre><h1 id="chapter-13-writing-tests">
   Chapter 13: Writing Tests
   <a class="anchor" href="#chapter-13-writing-tests">#</a>
 </h1>

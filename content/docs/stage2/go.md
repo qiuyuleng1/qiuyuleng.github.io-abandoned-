@@ -760,6 +760,41 @@ for k := range uniqueNames {
 
 #### Iterating over maps
 
+```
+m := map[string]int{
+    "a": 1,
+    "c": 3,
+    "b": 2,
+}
+for i := 0; i < 3; i++ {
+    fmt.Println("Loop", i)
+    for k, v := range m {
+        fmt.Println(k, v)
+    }
+}
+```
+
+The order of the keys and values varies.
+This is a security feature to avoid *Hash Dos*.
+
+To make it easier to debug, the formatting function (like `fmt.Println` always output maps with their keys in ascending sorted order).
+
+#### Iterating over strings
+
+When iterating over a string with `for-range` loop, it iterates over `runes`, not `bytes`, in order.
+
+#### The for-range value is a copy
+
+The `for-range` loop copies the value from the compound type to the value variable. Modifying the value does not modify the source.
+
+```
+evenVals := []int{2, 4, 6, 8, 10, 12}
+for _, v := range evenVals {
+    v *= 2
+}
+fmt.Println(evenVals) // 2,4,6,8,10,12
+```
+
 
 # Chapter 13: Writing Tests
 
